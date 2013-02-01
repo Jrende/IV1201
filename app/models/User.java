@@ -8,12 +8,13 @@ import play.data.format.Formats;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
+import java.util.List;
+
 @Entity 
 @Table(name="account")
-public class User extends Model{
+public class User extends Model {
 	
     @Id
-    @Constraints.Required
     @Formats.NonEmpty
     public Long person_id;
     
@@ -28,18 +29,22 @@ public class User extends Model{
     
     @Constraints.Required
     public String name;
+
+    @Constraints.Required
+    public String thingie;
+    
+//    @Constraints.Required
+//    public Role role;
     
     @Constraints.Required
-    public Role role;
-    
     public String ssn;
-    
-    @Constraints.Required
-    public Integer birthdate;
     
     
     public static Model.Finder<String,User> find = new Model.Finder(String.class, User.class);
 
+	public User() {
+		thingie = "Hej";
+	}
     /**
      * Retrieve a User from email.
      */
@@ -56,5 +61,14 @@ public class User extends Model{
             .eq("password", password)
             .findUnique();
     }
+
+	public static List<User> getAll() {
+		return find.all();
+	}
+
+	@Override
+	public String toString() {
+		return username;
+	}
 
 }
