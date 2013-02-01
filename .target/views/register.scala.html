@@ -1,0 +1,19 @@
+@(userList:List[User], registerForm: Form[User])
+
+@main("Registration form") {
+<ul>
+	@for(user <- userList) {
+		<li>@user.name</li>	
+	}
+</ul>
+  @helper.form(action = routes.Application.newUser(), 'id -> "registerForm") {
+		@helper.inputText(registerForm("username"))
+		@helper.inputPassword(registerForm("password"))
+		@helper.inputText(registerForm("email"))
+        @helper.inputText(registerForm("name"))
+        @helper.inputText(registerForm("surname"))
+        @helper.inputText(registerForm("ssn"))
+        <input type="submit" />
+        
+	}
+}

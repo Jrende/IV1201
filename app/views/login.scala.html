@@ -1,0 +1,18 @@
+@(fisk : String, form: Form[Application.Login])
+
+@main("Login") {
+	@helper.form(action = routes.Application.auth) {
+		@helper.inputText(form("username"))
+		@helper.inputPassword(form("password"))
+		@if(form.hasGlobalErrors) { 
+        <p class="error">
+        	@form.globalError.message
+        </p>
+            }
+		<p>
+        	<button type="submit">Login</button>
+        </p>
+	}
+    <p>@fisk</p>
+
+}
