@@ -44,7 +44,7 @@ public class Application extends Controller {
 		} else {
 			session("name", loginForm.get().username);
 			return redirect(
-					routes.Application.index()
+					routes.Index.index()
 					);
 		}
 	}
@@ -60,10 +60,6 @@ public class Application extends Controller {
 				);
 	}
 
-	public static Result index() {
-		return ok(index.render("Your new application is ready."));
-	}
-
 	public static Result register() {
 		return ok(register.render(User.getAll(), form(User.class)));
 	}
@@ -77,7 +73,7 @@ public class Application extends Controller {
 		} else {
 			System.out.println("Ny användare: " + userForm.get());
 			userForm.get().save();
-			return redirect(routes.Application.index());
+			return redirect(routes.Index.index());
 		}
 	}
 

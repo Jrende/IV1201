@@ -52,27 +52,26 @@ public class User extends Model {
 	public User() {
 	}
 
-	/**
-	 * Retrieve a User from email.
-	 */
-	public static User findByEmail(String email) {
-		return find.where().eq("email", email).findUnique();
-	}
+    /**
+     * Retrieve a User from email.
+     */
+    public static User findByEmail(String email) {
+        return find.where().eq("email", email).findUnique();
+    }
 
-	/**
-	 * Retrieve a User from user name.
-	 */
-	public static User findByUsername(String username) {
-		return find.where().eq("username", username).findUnique();
-	}
-
-	/**
-	 * Authenticate a User.
-	 */
-	public static User authenticate(String username, String password) {
-		return find.where().eq("username", username).eq("password", password)
-				.findUnique();
-	}
+    public static User findByUsername(String username) {
+        return find.where().eq("username", username).findUnique();
+    }
+    
+    /**
+     * Authenticate a User.
+     */
+    public static User authenticate(String username, String password) {
+        return find.where()
+            .eq("username", username)
+            .eq("password", password)
+            .findUnique();
+    }
 
 	public static List<User> getAll() {
 		return find.all();
