@@ -36,6 +36,9 @@ public class User extends Model {
 //    public Role role;
     
     @Constraints.Required
+    public String password;
+    
+    @Constraints.Required
     public String ssn;
     
     
