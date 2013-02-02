@@ -20,16 +20,16 @@ public class User extends Model {
 	@Formats.NonEmpty
 	public Long person_id;
 
-	@Constraints.Required(message="Username is required")
+	@Constraints.Required(message="Required")
 	public String username;
 
-	@Constraints.Email(message="Email is required")
+	@Constraints.Email(message="Required")
 	public String email;
 
-	@Constraints.Required(message="Surname is required")
+	@Constraints.Required(message="Required")
 	public String surname;
 
-	@Constraints.Required(message="Name is required")
+	@Constraints.Required(message="Required")
 	public String name;
 
 	@Constraints.Required
@@ -37,14 +37,14 @@ public class User extends Model {
 	public Role role = Role.Applicant;
 
 	@Constraints.MinLength(6)
-	@Constraints.Required(message="Password is required")
+	@Constraints.Required(message="Required")
 	public String password;
 
 	@Constraints.MinLength(6)
-	@Constraints.Required(message="Confirm password is required")
+	@Constraints.Required(message="Required")
 	public transient String confirmPassword;
 	
-	@Constraints.Required(message="Security social number is required")
+	@Constraints.Required(message="Required")
 	public String ssn;
 	
 	public static Model.Finder<String, User> find = new Model.Finder(String.class, User.class);

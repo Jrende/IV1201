@@ -65,13 +65,10 @@ public class Application extends Controller {
 	}
 
 	public static Result newUser() {
-		System.out.println("newUser()");
 		Form<User> userForm = form(User.class).bindFromRequest();
 		if(userForm.hasErrors()) {
-			System.out.println("form has errors");
 			return badRequest(register.render(User.getAll(), userForm));
 		} else {
-			System.out.println("Ny användare: " + userForm.get());
 			userForm.get().save();
 			return redirect(routes.Index.index());
 		}
