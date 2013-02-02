@@ -1,4 +1,4 @@
-@(title: String)(content: Html)
+@(title: String, h1: String)(content: Html)
 
 <!DOCTYPE html>
 
@@ -11,6 +11,7 @@
         <script src="@routes.Assets.at("javascripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
     </head>
     <body>
+    	<h1>@h1</h1>
         @content
     </body>
 </html>
