@@ -9,6 +9,7 @@
   @helper.form(action = routes.Application.newUser(), 'id -> "registerForm") {
 		@helper.inputText(registerForm("username"))
 		@helper.inputPassword(registerForm("password"))
+		@helper.inputPassword(registerForm("confirmPassword"))
 		@helper.inputText(registerForm("email"))
         @helper.inputText(registerForm("name"))
         @helper.inputText(registerForm("surname"))

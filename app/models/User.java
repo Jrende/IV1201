@@ -1,6 +1,8 @@
 package models;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,43 +12,46 @@ import play.db.ebean.Model;
 
 import java.util.List;
 
-@Entity 
-@Table(name="account")
+@Entity
+@Table(name = "account")
 public class User extends Model {
-	
-    @Id
-    @Formats.NonEmpty
-    public Long person_id;
-    
-    @Constraints.Required
-    public String username;
-    
-    public String email;
-    
-    @Constraints.Required
-    public String surname;
-    
-    @Constraints.Required
-    public String name;
 
-    @Constraints.Required
-    public String thingie;
-    
-//    @Constraints.Required
-//    public Role role;
-    
-    @Constraints.Required
-    public String password;
-    
-    @Constraints.Required
-    public String ssn;
-    
-    
-    public static Model.Finder<String,User> find = new Model.Finder(String.class, User.class);
+	@Id
+	@Formats.NonEmpty
+	public Long person_id;
+
+	@Constraints.Required(message="Username is required")
+	public String username;
+
+	@Constraints.Email(message="Email is required")
+	public String email;
+
+	@Constraints.Required(message="Surname is required")
+	public String surname;
+
+	@Constraints.Required(message="Name is required")
+	public String name;
+
+	@Constraints.Required
+	@Enumerated(EnumType.ORDINAL)
+	public Role role = Role.Applicant;
+
+	@Constraints.MinLength(6)
+	@Constraints.Required(message="Password is required")
+	public String password;
+
+	@Constraints.MinLength(6)
+	@Constraints.Required(message="Confirm password is required")
+	public transient String confirmPassword;
+	
+	@Constraints.Required(message="Security social number is required")
+	public String ssn;
+	
+	public static Model.Finder<String, User> find = new Model.Finder(String.class, User.class);
 
 	public User() {
-		thingie = "Hej";
 	}
+
     /**
      * Retrieve a User from email.
      */
@@ -77,4 +82,16 @@ public class User extends Model {
 		return username;
 	}
 
+	public String validate() {
+		if (findByEmail(email) != null)
+			return "Email already registered";
+		
+		if (findByUsername(username) != null)
+			return "Username already registered";
+		
+		if (!password.equals(confirmPassword))
+			return "Your password and confirmation password don't match";
+
+		return null;
+	}
 }

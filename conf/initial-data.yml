@@ -8,4 +8,5 @@ user:
         surname: Snigelsson
         name: Bertil
         password: fisk
+        role: Recruiter
 
