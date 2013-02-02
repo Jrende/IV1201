@@ -1,6 +1,7 @@
 @(form: Form[Application.Login])
 
 @main("Login") {
+	<div class="four columns centered">
 	@helper.form(action = routes.Application.authenticate) {
 		@helper.inputText(form("username"))
 		@helper.inputPassword(form("password"))
@@ -10,7 +11,8 @@
         </p>
             }
 		<p>
-        	<button type="submit">Login</button>
+        	<button class="small button" type="submit">Login</button>
         </p>
 	}
+	</div>
 }
