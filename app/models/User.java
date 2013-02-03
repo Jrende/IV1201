@@ -23,7 +23,8 @@ public class User extends Model {
 	@Constraints.Required(message="Required")
 	public String username;
 
-	@Constraints.Email(message="Required")
+	@Constraints.Required(message="Required")
+	@Constraints.Email
 	public String email;
 
 	@Constraints.Required(message="Required")
