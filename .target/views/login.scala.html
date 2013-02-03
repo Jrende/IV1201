@@ -1,6 +1,6 @@
 @(form: Form[Application.Login])
 
-@main("Login") {
+@main("Login", "Logga in") {
 	<div class="four columns centered">
 	@helper.form(action = routes.Application.authenticate) {
 		@helper.inputText(form("username"))

@@ -1,6 +1,6 @@
 @(userList:List[User], registerForm: Form[User])
 
-@main("Registration form") {
+@main("Registration form", "Register") {
 
 	<div class="four columns centered">
   	@helper.form(action = routes.Application.newUser(), 'id -> "registerForm") {
@@ -10,7 +10,7 @@
 		@helper.inputText(registerForm("email"))
         @helper.inputText(registerForm("name"))
         @helper.inputText(registerForm("surname"))
-        @helper.inputText(registerForm("ssn"))
+        @helper.inputText(registerForm("social security number"))
         <input class="small button" type="submit" />
         
 	}
