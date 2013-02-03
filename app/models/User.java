@@ -13,7 +13,7 @@ import play.db.ebean.Model;
 import java.util.List;
 
 @Entity
-@Table(name = "account")
+@Table(name = "user")
 public class User extends Model {
 
 	@Id

@@ -3,7 +3,7 @@
 
 # --- !Ups
 
-create table account (
+create table user (
   person_id                 bigint not null,
   username                  varchar(255),
   email                     varchar(255),
@@ -12,11 +12,11 @@ create table account (
   role                      integer,
   password                  varchar(255),
   ssn                       varchar(255),
-  constraint ck_account_role check (role in (0,1)),
-  constraint pk_account primary key (person_id))
+  constraint ck_user_role check (role in (0,1)),
+  constraint pk_user primary key (person_id))
 ;
 
-create sequence account_seq;
+create sequence user_seq;
 
 
 
@@ -25,9 +25,9 @@ create sequence account_seq;
 
 SET REFERENTIAL_INTEGRITY FALSE;
 
-drop table if exists account;
+drop table if exists user;
 
 SET REFERENTIAL_INTEGRITY TRUE;
 
-drop sequence if exists account_seq;
+drop sequence if exists user_seq;
 
