@@ -1,4 +1,4 @@
-@(userList:List[User], registerForm: Form[User])
+@(registerForm: Form[User])
 
 @main("Registration form", "Register") {
 
@@ -10,7 +10,7 @@
 		@helper.inputText(registerForm("email"))
         @helper.inputText(registerForm("name"))
         @helper.inputText(registerForm("surname"))
-        @helper.inputText(registerForm("social security number"))
+        @helper.inputText(registerForm("ssn"))
         <input class="small button" type="submit" />
         
 	}
