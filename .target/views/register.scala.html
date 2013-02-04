@@ -1,8 +1,7 @@
 @(registerForm: Form[User])
 
-@main("Registration form", "Register") {
-	<div class="four columns centered">
-  	@helper.form(action = routes.Application.newUser(), 'id -> "registerForm") {
+@main("Registration form", "Register", false) {
+  	@helper.form(action = routes.UserController.newUser(), 'id -> "registerForm") {
 		@helper.inputText(registerForm("username"))
 		<div>
 		@helper.inputPassword(registerForm("password"))	<div id="divPassword" style="background-image: url(@routes.Assets.at("images/ok.png"));"><img=url(@routes.Assets.at("images/ok.png"))/></div>
@@ -15,5 +14,4 @@
         <input class="small button" type="submit" />
         
 	}
-	</div>
 }

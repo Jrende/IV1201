@@ -1,7 +1,7 @@
 @(form: Form[UserController.Login])
 
-@main("Login", "Logga in") {
-	<div class="four columns centered">
+@main("Login", "Logga in", false) {
+	
 	@helper.form(action = routes.UserController.authenticate) {
 		@helper.inputText(form("username"))
 		@helper.inputPassword(form("password"))
@@ -17,5 +17,4 @@
         </div>
         </div>
 	}
-	</div>
 }

@@ -1,7 +1,6 @@
 @(registerForm: Form[User])
 
-@main("Registration form", "Register") {
-	<div class="four columns centered">
+@main("Registration form", "Register", false) {
   	@helper.form(action = routes.UserController.newUser(), 'id -> "registerForm") {
 		@helper.inputText(registerForm("username"))
 		<div>
@@ -15,5 +14,4 @@
         <input class="small button" type="submit" />
         
 	}
-	</div>
 }
