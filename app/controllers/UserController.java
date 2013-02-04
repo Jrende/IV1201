@@ -71,6 +71,9 @@ public class UserController extends Controller {
 		}
 	}
 	
+	/**
+	 * Is username free?
+	 */
 	public static Result usernameAvailable(String username) {
 		if (User.usernameAvailable(username))
 			return ok("true");
@@ -78,6 +81,11 @@ public class UserController extends Controller {
 		return ok("false");
 	}
 	
+	/**
+	 * Setup rotes for javascript calls.
+	 * 
+	 * @return
+	 */
 	public static Result javascriptRoutes() {
 		response().setContentType("text/javascript");
 		return ok(

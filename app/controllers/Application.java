@@ -24,64 +24,7 @@ public class Application extends Controller {
 		}
 
 	}
-
-	/**
-	 * Login page.
-	 */
-	/*
-	public static Result login() {
-		return ok(login.render(form(Login.class)));
-	}
-*/
-	/**
-	 * Handle login form submission.
-	 */
-	/*
-	public static Result authenticate() {
-		Form<Login> loginForm = form(Login.class).bindFromRequest();
-		if (loginForm.hasErrors()) {
-			return badRequest(login.render(loginForm));
-		} else {
-			session("name", loginForm.get().username);
-			return redirect(routes.Index.index());
-		}
-	}
-	 */
-	/**
-	 * Logout and clean the session.
-	 */
-	/*
-	public static Result logout() {
-		session().clear();
-		flash("success", "You've been logged out");
-		return redirect(routes.Application.login());
-	}
-
-	public static Result register() {
-		return ok(register.render(form(User.class)));
-	}
-
-	public static Result newUser() {
-		Form<User> userForm = form(User.class).bindFromRequest();
-		if (userForm.hasErrors()) {
-			System.out.println("Userform has errors");
-			return badRequest(register.render(userForm));
-		} else {
-			System.out.println("Saving user");
-			userForm.get().save();
-			return redirect(routes.Index.index());
-		}
-	}
-	
-	*/
-	
-	public static Result usernameAvailable(String username) {
-		if (User.usernameAvailable(username))
-			return ok("true");
 		
-		return ok("false");
-	}
-	
 	public static Result javascriptRoutes() {
 		response().setContentType("text/javascript");
 		return ok(

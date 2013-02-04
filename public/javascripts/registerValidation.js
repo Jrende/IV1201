@@ -90,7 +90,7 @@ $('#confirmPassword').bind('input', function() {
 	setVisibility('#confirmPasswordOk', validateConfirmPassword('password', 'confirmPassword', 6));
 });
 
-if (!validateEmail('email', 6))
+if (!validateEmail('email'))
 	$('#emailOk').hide();
 
 $('#email').bind('input', function() { 
