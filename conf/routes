@@ -12,5 +12,10 @@ GET     /logout                     controllers.Application.logout()
 GET		/register					controllers.Application.register()
 POST	/register					controllers.Application.newUser()
 
+GET    /usernameAvailable			controllers.Application.usernameAvailable(application: String)
+
+# Javascript routing
+GET    /assets/javascripts/routes      controllers.Application.javascriptRoutes()
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

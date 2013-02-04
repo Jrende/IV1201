@@ -83,11 +83,25 @@ public class User extends Model {
 		return username;
 	}
 
-	public String validate() {
+	static public boolean emailAvailable(String email) {
 		if (findByEmail(email) != null)
+			return false;
+		
+		return true;
+	}
+
+	static public boolean usernameAvailable(String username) {
+		if (findByUsername(username) != null)
+			return false;
+		
+		return true;
+	}
+	
+	public String validate() {
+		if (emailAvailable(email))
 			return "Email already registered";
 		
-		if (findByUsername(username) != null)
+		if (usernameAvailable(username))
 			return "Username already registered";
 		
 		if (!password.equals(confirmPassword))

@@ -1,14 +1,34 @@
-#divPassword
-{
-//	width: 804px;
-//	height: 100px;
-	position: relative;
+.wrapper {
+    width:    450px;
+    border:   none;
+    overflow: hidden; /* wrapper should contain a .first div, then a .second div */
+}
+.first {
+    width:    400px;
+    float:    left;
+    border:   none;
 }
 
-div img {
-//	width: 500px;
-//	height: 70px;
+.second {
+	background-image: 	 url(/assets/images/sprites.png);
+	background-position: 0px -609px;
+	width:	  20px;
+	height:	  23px;
+	display:  inline-block;
+
+    border:   none;
+    overflow: hidden;
 	position: relative;
-//	bottom: 0px;
-//	left: 152px;
+	top: 	  30px;
+	left: 	  5px;
 }
+
+.second img {
+	background-image: url(/assets/images/sprites.png);
+	background-position: 0px -609px;
+	width:	 20px;
+	height:	 23px;
+	display: inline-block;
+}
+
+
