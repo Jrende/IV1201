@@ -1,8 +1,8 @@
 @(currentUser: User)
 
-@main("Välkommen", "Välkommen") {
+@main("Welcome", "Welcome") {
     
-	<h1>@currentUser.name</h1>
+	<h2>Logged in as: @currentUser.name</h2>
 	
 	<a href="/logout" class="small button">Logout</a>
     
