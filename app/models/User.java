@@ -98,10 +98,10 @@ public class User extends Model {
 	}
 	
 	public String validate() {
-		if (emailAvailable(email))
+		if (!emailAvailable(email))
 			return "Email already registered";
 		
-		if (usernameAvailable(username))
+		if (!usernameAvailable(username))
 			return "Username already registered";
 		
 		if (!password.equals(confirmPassword))
