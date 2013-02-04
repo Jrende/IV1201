@@ -1,0 +1,29 @@
+@(title: String, h1: String, loggedIn: Boolean)(content: Html)
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>@title</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("lib/foundation/stylesheets/foundation.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("lib/foundation/stylesheets/app.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.ico")">
+        <script src="@routes.Assets.at("javascripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+    </head>
+    <body>
+    <div class="row header">
+    	<div class="twelve columns centered">
+    		<h1>
+    			@h1
+    			@if(loggedIn){
+    				<a href="/logout" class="small button logout">Logout</a>
+    			}
+    		</h1>
+    	</div>
+  	</div>
+    	<div class="four columns centered">
+        @content
+        </div>
+    </body>
+</html>

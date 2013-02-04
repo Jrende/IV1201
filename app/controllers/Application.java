@@ -7,10 +7,12 @@ import play.data.*;
 import models.*;
 import views.html.*;
 
-public class UserController extends Controller {
+public class Application extends Controller {
 
-	//-- Defines a login form
+	// -- Authentication
+
 	public static class Login {
+
 		public String username;
 		public String password;
 
@@ -24,15 +26,17 @@ public class UserController extends Controller {
 	}
 
 	/**
-	 * Renders the login view
+	 * Login page.
 	 */
+	/*
 	public static Result login() {
 		return ok(login.render(form(Login.class)));
 	}
-
+*/
 	/**
-	 * Authenticates user and creates a session cookie.
+	 * Handle login form submission.
 	 */
+	/*
 	public static Result authenticate() {
 		Form<Login> loginForm = form(Login.class).bindFromRequest();
 		if (loginForm.hasErrors()) {
@@ -42,23 +46,21 @@ public class UserController extends Controller {
 			return redirect(routes.Index.index());
 		}
 	}
-
-	/**
-	 * Logs out and clears cookie
 	 */
+	/**
+	 * Logout and clean the session.
+	 */
+	/*
 	public static Result logout() {
 		session().clear();
 		flash("success", "You've been logged out");
-		return redirect(routes.UserController.login());
+		return redirect(routes.Application.login());
 	}
 
 	public static Result register() {
 		return ok(register.render(form(User.class)));
 	}
 
-	/**
-	 *	Creates and persists a new user.
-	 */
 	public static Result newUser() {
 		Form<User> userForm = form(User.class).bindFromRequest();
 		if (userForm.hasErrors()) {
@@ -70,6 +72,8 @@ public class UserController extends Controller {
 			return redirect(routes.Index.index());
 		}
 	}
+	
+	*/
 	
 	public static Result usernameAvailable(String username) {
 		if (User.usernameAvailable(username))

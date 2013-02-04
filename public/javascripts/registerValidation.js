@@ -40,7 +40,7 @@ function setVisibility(element, visibility)
 function validateUsername(username)
 {
 	if (username.length >= 3) {
-		jsRoutes.controllers.Application.usernameAvailable(username).ajax({
+		jsRoutes.controllers.UserController.usernameAvailable(username).ajax({
 			success: function(data) {
 				if (data == 'false')
 					$('#usernameOk').hide();
@@ -57,7 +57,7 @@ function validateUsername(username)
 validateUsername(document.getElementById('username').value);
 $('#username').bind('input', function() {
 		if (validateMinLength('username', 3)) {
-			jsRoutes.controllers.Application.usernameAvailable(document.getElementById('username').value).ajax({
+			jsRoutes.controllers.UserController.usernameAvailable(document.getElementById('username').value).ajax({
     			success: function(data) {
     				if (data == 'true')
 						setVisibility('#usernameOk', true);
@@ -111,7 +111,7 @@ $('#surname').bind('input', function() {
 	setVisibility('#surnameOk', validateMinLength('surname', 1));
 });
 
-if(!validateMinLength('ssn', 7));
+if(!validateMinLength('ssn', 7))
 	$('#ssnOk').hide();
 
 $('#ssn').bind('input', function() { 
