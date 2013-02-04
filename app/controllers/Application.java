@@ -9,8 +9,7 @@ import views.html.*;
 
 public class Application extends Controller {
 
-	//-- Authentication
-
+	//-- Defines a login form
 		public static class Login {
 
 			public String username;
@@ -26,7 +25,7 @@ public class Application extends Controller {
 		}
 
 	/**
-	 * Login page.
+	 * Renders the login view
 	 */
 	public static Result login() {
 		return ok(
@@ -35,7 +34,7 @@ public class Application extends Controller {
 	}
 
 	/**
-	 * Handle login form submission.
+	 * Authenticates user and creates a session cookie.
 	 */
 	public static Result authenticate() {
 		Form<Login> loginForm = form(Login.class).bindFromRequest();
@@ -50,7 +49,7 @@ public class Application extends Controller {
 	}
 
 	/**
-	 * Logout and clean the session.
+	 * Logs out and clears cookie
 	 */
 	public static Result logout() {
 		session().clear();
@@ -64,6 +63,9 @@ public class Application extends Controller {
 		return ok(register.render(form(User.class)));
 	}
 
+	/**
+	 *	Creates and persists a new user.
+	 */
 	public static Result newUser() {
 		Form<User> userForm = form(User.class).bindFromRequest();
 		if(userForm.hasErrors()) {
