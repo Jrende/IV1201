@@ -1,8 +1,8 @@
-@(form: Form[Application.Login])
+@(form: Form[UserController.Login])
 
-@main("Login", "Logga in") {
-	<div class="four columns centered">
-	@helper.form(action = routes.Application.authenticate) {
+@main("Login", "Logga in", false) {
+	
+	@helper.form(action = routes.UserController.authenticate) {
 		@helper.inputText(form("username"))
 		@helper.inputPassword(form("password"))
 		@if(form.hasGlobalErrors) { 
@@ -17,5 +17,4 @@
         </div>
         </div>
 	}
-	</div>
 }

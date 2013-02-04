@@ -7,11 +7,18 @@ import play.data.*;
 import models.*;
 import views.html.*;
 
+<<<<<<< HEAD:app/controllers/Application.java
 public class Application extends Controller {
 
 	// -- Authentication
 
 	public static class Login {
+=======
+public class UserController extends Controller {
+
+	//-- Defines a login form
+		public static class Login {
+>>>>>>> 96a3a12aaace490637a72f2fd05b5dc67e8c2332:app/controllers/UserController.java
 
 		public String username;
 		public String password;
@@ -26,14 +33,14 @@ public class Application extends Controller {
 	}
 
 	/**
-	 * Login page.
+	 * Renders the login view
 	 */
 	public static Result login() {
 		return ok(login.render(form(Login.class)));
 	}
 
 	/**
-	 * Handle login form submission.
+	 * Authenticates user and creates a session cookie.
 	 */
 	public static Result authenticate() {
 		Form<Login> loginForm = form(Login.class).bindFromRequest();
@@ -46,18 +53,27 @@ public class Application extends Controller {
 	}
 
 	/**
-	 * Logout and clean the session.
+	 * Logs out and clears cookie
 	 */
 	public static Result logout() {
 		session().clear();
 		flash("success", "You've been logged out");
+<<<<<<< HEAD:app/controllers/Application.java
 		return redirect(routes.Application.login());
+=======
+		return redirect(
+				routes.UserController.login()
+				);
+>>>>>>> 96a3a12aaace490637a72f2fd05b5dc67e8c2332:app/controllers/UserController.java
 	}
 
 	public static Result register() {
 		return ok(register.render(form(User.class)));
 	}
 
+	/**
+	 *	Creates and persists a new user.
+	 */
 	public static Result newUser() {
 		Form<User> userForm = form(User.class).bindFromRequest();
 		if (userForm.hasErrors()) {

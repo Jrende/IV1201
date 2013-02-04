@@ -1,5 +1,6 @@
 @(registerForm: Form[User])
 
+<<<<<<< HEAD
 @import controllers.routes.javascript._
 
 @main("Registration form", "Register") {
@@ -20,6 +21,13 @@
 			</div>
 			<div class="second" id="passwordOk" style="background-image: url(@routes.Assets.at("images/sprites.png")); background-position:0px -609px;width:20px;height:23px;display:inline-block;">
 			</div>
+=======
+@main("Registration form", "Register", false) {
+  	@helper.form(action = routes.UserController.newUser(), 'id -> "registerForm") {
+		@helper.inputText(registerForm("username"))
+		<div>
+		@helper.inputPassword(registerForm("password"))	<div id="divPassword" style="background-image: url(@routes.Assets.at("images/ok.png"));"><img=url(@routes.Assets.at("images/ok.png"))/></div>
+>>>>>>> 96a3a12aaace490637a72f2fd05b5dc67e8c2332
 		</div>
 		<div class="wrapper">
 			<div class="first">
