@@ -7,7 +7,7 @@ import play.data.*;
 import models.*;
 import views.html.*;
 
-public class Application extends Controller {
+public class UserController extends Controller {
 
 	//-- Defines a login form
 		public static class Login {
@@ -55,7 +55,7 @@ public class Application extends Controller {
 		session().clear();
 		flash("success", "You've been logged out");
 		return redirect(
-				routes.Application.login()
+				routes.UserController.login()
 				);
 	}
 
