@@ -1,9 +1,5 @@
 @(currentUser: User)
 
-@main("Welcome", "Welcome") {
-    
-	<h2>Logged in as: @currentUser.name</h2>
-	
-	<a href="/logout" class="small button">Logout</a>
+@main("Welcome",  "Welcome " + currentUser.name, true ) {
     
 }

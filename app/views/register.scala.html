@@ -1,6 +1,6 @@
 @(registerForm: Form[User])
 
-@main("Registration form", "Register") {
+@main("Registration form", "Register", false) {
   	@helper.form(action = routes.UserController.newUser(), 'id -> "registerForm") {
 		@helper.inputText(registerForm("username"))
 		<div>
