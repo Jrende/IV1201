@@ -69,10 +69,8 @@ public class UserController extends Controller {
 	public static Result newUser() {
 		Form<User> userForm = form(User.class).bindFromRequest();
 		if(userForm.hasErrors()) {
-			System.out.println("Userform has errors");
 			return badRequest(register.render(userForm));
 		} else {
-			System.out.println("Saving user");
 			userForm.get().save();
 			return redirect(routes.Index.index());
 		}
