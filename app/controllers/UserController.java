@@ -1,5 +1,9 @@
 package controllers;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import play.*;
 import play.mvc.*;
 import play.data.*;
@@ -98,5 +102,4 @@ public class UserController extends Controller {
 						controllers.routes.javascript.UserController.usernameAvailable())
 		);
 	}
-
 }
