@@ -3,8 +3,6 @@
 @import controllers.routes.javascript._
 
 @main("Registration form", "Register", false) {
-	<div class="four columns centered">
-		
   	@helper.form(action = routes.UserController.newUser(), 'id -> "registerForm") {
 
 		<div class="wrapper">
@@ -61,9 +59,6 @@
 		</div>
 		<input class="small button" type="submit" />
 	}
-	
-    </div>
-        
 	<script src="@routes.UserController.javascriptRoutes" type="text/javascript">
 	</script>
     <script src="@routes.Assets.at("javascripts/registerValidation.js")" type="text/javascript">
