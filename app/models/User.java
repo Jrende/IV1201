@@ -10,8 +10,10 @@ import play.data.format.Formats;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
-
 
 /**
  * Class representing a user in the system.
@@ -87,7 +89,7 @@ public class User extends Model {
     public static User authenticate(String username, String password) {
         return find.where()
             .eq("username", username)
-            .eq("password", password)
+            .eq("password", md5digest(password))
             .findUnique();
     }
 
@@ -136,6 +138,35 @@ public class User extends Model {
 			return false;
 		
 		return true;
+	}
+	
+	/**
+	 * Digest string to md5 sum.
+	 * 
+	 * @param string - String to digest.
+	 * @return returns digested string or null if any problems wore encountered.
+	 */
+	static public String md5digest(String string) {
+		try {
+			MessageDigest md5 = MessageDigest.getInstance("MD5");
+			byte[] bytesOfMessage = string.getBytes("UTF-8");
+			byte[] digest = md5.digest(bytesOfMessage);
+			
+			return new String(digest);
+			
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	@Override
+	public void save() {
+		password = md5digest(password);
+		super.save();
 	}
 	
 	/**
