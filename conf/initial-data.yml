@@ -3,10 +3,10 @@
 user:
 
     - !!models.User
-        person_id: 1
+        person_id: 0
         username: snigel
         surname: Snigelsson
         name: Bertil
-        password: fisk
+        password: ymQOxIo1jtNQ+1OcNOluIQ
         role: Recruiter
 

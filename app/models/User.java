@@ -89,7 +89,7 @@ public class User extends Model {
     public static User authenticate(String username, String password) {
         return find.where()
             .eq("username", username)
-            .eq("password", md5digest(password))
+            .eq("password", encrypt(password))
             .findUnique();
     }
 
@@ -146,11 +146,13 @@ public class User extends Model {
 	 * @param string - String to digest.
 	 * @return returns digested string or null if any problems wore encountered.
 	 */
-	static public String md5digest(String string) {
+	static public String encrypt(String string) {
 		try {
 			MessageDigest md5 = MessageDigest.getInstance("MD5");
 			byte[] bytesOfMessage = string.getBytes("UTF-8");
 			byte[] digest = md5.digest(bytesOfMessage);
+			
+			digest  = Base64.encode(digest);
 			
 			return new String(digest);
 			
@@ -165,7 +167,7 @@ public class User extends Model {
 	
 	@Override
 	public void save() {
-		password = md5digest(password);
+		password = encrypt(password);		
 		super.save();
 	}
 	
