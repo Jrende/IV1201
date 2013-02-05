@@ -1,0 +1,20 @@
+@(form: Form[UserController.Login])
+
+@main("Login", "Logga in", false) {
+	
+	@helper.form(action = routes.UserController.authenticate) {
+		@helper.inputText(form("username"))
+		@helper.inputPassword(form("password"))
+		@if(form.hasGlobalErrors) { 
+        <p class="error">
+        	@form.globalError.message
+        </p>
+            }
+            <div class="row">
+		<div class="four colums centered">
+        	<button class="small button" type="submit">Login</button>
+        	<a href="/register" class="small button">Register new account</a>
+        </div>
+        </div>
+	}
+}
