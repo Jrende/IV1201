@@ -9,18 +9,24 @@ import views.html.*;
 
 public class UserController extends Controller {
 
-	//-- Defines a login form
+	/**
+	 * Authentication
+	 */
 	public static class Login {
 		public String username;
 		public String password;
 
+		/**
+		 * Validate user name  and password.
+		 * 
+		 * @return - null on success, else error message.
+		 */
 		public String validate() {
 			if (User.authenticate(username, password) == null) {
 				return "Invalid user or password";
 			}
 			return null;
 		}
-
 	}
 
 	/**

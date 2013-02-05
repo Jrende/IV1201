@@ -1,5 +1,9 @@
 package models;
 
+/**
+ * Description of a User role within the application.
+ *
+ */
 public enum Role {
   Recruiter,
   Applicant;
