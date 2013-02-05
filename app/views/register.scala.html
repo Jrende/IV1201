@@ -1,19 +1,67 @@
 @(registerForm: Form[User])
 
-@main("Registration form", "Register") {
-	<div class="four columns centered">
+@import controllers.routes.javascript._
+
+@main("Registration form", "Register", false) {
   	@helper.form(action = routes.UserController.newUser(), 'id -> "registerForm") {
-		@helper.inputText(registerForm("username"))
-		<div>
-		@helper.inputPassword(registerForm("password"))	<div id="divPassword" style="background-image: url(@routes.Assets.at("images/ok.png"));"><img=url(@routes.Assets.at("images/ok.png"))/></div>
+
+		<div class="wrapper">
+			<div class="first">
+				@helper.inputText(registerForm("username"))
+			</div>
+			<div class="second" id="usernameOk">
+			</div>
 		</div>
-		@helper.inputPassword(registerForm("confirmPassword"))
-		@helper.inputText(registerForm("email"))
-        @helper.inputText(registerForm("name"))
-        @helper.inputText(registerForm("surname"))
-        @helper.inputText(registerForm("ssn"))
-        <input class="small button" type="submit" />
+							
+		<div class="wrapper">
+			<div class="first">
+				@helper.inputPassword(registerForm("password"))
+			</div>
+			<div class="second" id="passwordOk" style="background-image: url(@routes.Assets.at("images/sprites.png")); background-position:0px -609px;width:20px;height:23px;display:inline-block;">
+			</div>
+		</div>
+		<div class="wrapper">
+			<div class="first">
+				@helper.inputPassword(registerForm("confirmPassword"))
+			</div>
+			<div class="second" id="confirmPasswordOk" style="background-image: url(@routes.Assets.at("images/sprites.png"));background-position:0px -609px;width:20px;height:23px;display:inline-block;">
+			</div>
+		</div>
+		
+		<div class="wrapper">
+			<div class="first">
+				@helper.inputText(registerForm("email"))
+			</div>
+			<div class="second" id="emailOk" style="background-image: url(@routes.Assets.at("images/sprites.png"));background-position:0px -609px;width:20px;height:23px;display:inline-block;">
+			</div>
+		</div>
+			
+		<div class="wrapper">
+			<div class="first">
+		        @helper.inputText(registerForm("name"))
+			</div>
+			<div class="second" id="nameOk" style="background-image: url(@routes.Assets.at("images/sprites.png"));background-position:0px -609px;width:20px;height:23px;display:inline-block;">
+			</div>
         
+		<div class="wrapper">
+			<div class="first">
+    		    @helper.inputText(registerForm("surname"))
+			</div>
+			<div class="second" id="surnameOk" style="background-image: url(@routes.Assets.at("images/sprites.png"));background-position:0px -609px;width:20px;height:23px;display:inline-block;">
+			</div>
+        
+		<div class="wrapper">
+			<div class="first">
+        		@helper.inputText(registerForm("ssn"))
+			</div>
+			<div class="second" id="ssnOk" style="background-image: url(@routes.Assets.at("images/sprites.png"));background-position:0px -609px;width:20px;height:23px;display:inline-block;">
+			</div>
+		</div>
+		<input class="small button" type="submit" />
 	}
-	</div>
+	<script src="@routes.UserController.javascriptRoutes" type="text/javascript">
+	</script>
+    <script src="@routes.Assets.at("javascripts/registerValidation.js")" type="text/javascript">
+    </script>        
 }
+
