@@ -22,7 +22,7 @@ public class Index extends Controller {
 		String username = Http.Context.current().request().username();
 		User user = User.findByUsername(username);
 		
-		return ok(index.render(user));
+		return ok(index.render(user, Competence.getAll()));
 	}
 }
 
