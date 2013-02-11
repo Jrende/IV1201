@@ -19,7 +19,7 @@ import java.util.List;
  * Class representing a user in the system.
  */
 @Entity
-@Table(name = "user")
+@Table(name = "person")
 public class User extends Model {
 
 	@Id
