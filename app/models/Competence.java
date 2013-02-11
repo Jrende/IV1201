@@ -18,11 +18,26 @@ import java.util.List;
 @Entity
 @Table(name = "competence")
 public class Competence extends Model {
-	@Id
-	@Formats.NonEmpty
-	public int id;
+
 	
 	@Constraints.Required(message="Required")
 	@Formats.NonEmpty
 	public String name;
+	
+	@Id
+	@Formats.NonEmpty
+	@Constraints.Required(message="Required")
+	public int person_id;
+
+
+	public static Model.Finder<String, Competence> find = new Model.Finder(String.class, Competence.class);
+
+    /**
+     * Return a list of all Competences.
+     * 
+     * @return List of all Competences.
+     */
+	public static List<Competence> getAll() {
+		return find.all();
+	}
 }

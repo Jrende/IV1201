@@ -5,6 +5,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.OneToMany;
 
 import play.data.format.Formats;
 import play.data.validation.Constraints;
@@ -53,6 +54,9 @@ public class User extends Model {
 	
 	@Constraints.Required(message="Required")
 	public String ssn;
+
+	@OneToMany
+	public List<Competence> competenceList;
 	
 	public static Model.Finder<String, User> find = new Model.Finder(String.class, User.class);
 
