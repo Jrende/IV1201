@@ -13,10 +13,10 @@ person:
 
 competence: 
     - !!models.Competence
-        id: 1
+        competence_id: 1
         name: Korvgrillning
 
     - !!models.Competence
-        id: 2
+        competence_id: 2
         name: Karuselldrift
 
