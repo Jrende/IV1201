@@ -16,7 +16,7 @@ import java.util.List;
 @Table(name = "competence")
 public class Competence extends Model {
 	@Id
-	int competence_id;
+	public int competence_id;
 	@Constraints.Required(message="Required")
 	public String name;
 
