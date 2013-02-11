@@ -19,7 +19,18 @@ import java.util.List;
 @Table(name = "competence")
 public class Competence extends Model {
 	@Id
-	int person_id;
+	int competence_id;
 	@Constraints.Required(message="Required")
 	String name;
+
+	public static Model.Finder<String, User> find = new Model.Finder(String.class, Competence.class);
+
+    /**
+     * Return a list of all Users.
+     * 
+     * @return List of all Users.
+     */
+	public static List<Competence> getAll() {
+		return find.all();
+	}
 }
