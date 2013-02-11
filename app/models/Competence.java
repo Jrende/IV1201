@@ -19,7 +19,10 @@ import java.util.List;
 @Table(name = "competence")
 public class Competence extends Model {
 	@Id
-	int id;
+	@Formats.NonEmpty
+	public int id;
+	
 	@Constraints.Required(message="Required")
-	String name;
+	@Formats.NonEmpty
+	public String name;
 }
