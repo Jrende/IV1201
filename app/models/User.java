@@ -57,7 +57,7 @@ public class User extends Model {
 	public String ssn;
 
 	@OneToMany(cascade=CascadeType.ALL)
-	public List<Competence> competenceList;
+	public List<CompetenceProfile> competenceProfileList;
 	
 	public static Model.Finder<String, User> find = new Model.Finder(String.class, User.class);
 
