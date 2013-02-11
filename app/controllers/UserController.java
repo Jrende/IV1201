@@ -63,7 +63,7 @@ public class UserController extends Controller {
 	}
 
 	public static Result register() {
-		return ok(register.render(form(User.class)));
+		return ok(register.render(form(User.class), Competence.getAll()));
 	}
 
 	/**
