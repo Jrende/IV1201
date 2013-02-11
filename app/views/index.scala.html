@@ -1,5 +1,13 @@
-@(currentUser: User)
+@(currentUser: User, competenceList: List[Competence])
 
-@main("Welcome",  "Welcome " + currentUser.name, true ) {
+@main("Välkommen" + currentUser.name, "Hej", true) {
     
+	<h1>Välkommen @currentUser.name</h1>
+    
+	<h2>Lista på kompetenser</h2>
+	<ul>
+		@for(comp <- competenceList) {
+			<li>@comp.name</li>
+		}
+	</ul>
 }
