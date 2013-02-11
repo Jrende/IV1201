@@ -6,6 +6,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.OneToMany;
+import javax.persistence.CascadeType;
 
 import play.data.format.Formats;
 import play.data.validation.Constraints;
@@ -55,7 +56,7 @@ public class User extends Model {
 	@Constraints.Required(message="Required")
 	public String ssn;
 
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	public List<Competence> competenceList;
 	
 	public static Model.Finder<String, User> find = new Model.Finder(String.class, User.class);
