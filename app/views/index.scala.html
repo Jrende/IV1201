@@ -1,6 +1,6 @@
 @(currentUser: User, competenceList: List[Competence])
 
-@main("Index", Messages("title.welcome") + " " + currentUser.name, true) {    
+@main(Messages("title.index"), Messages("header.welcome") + " " + currentUser.name, true) {    
     
 	<h2>Lista på kompetenser</h2>
 	<ul>

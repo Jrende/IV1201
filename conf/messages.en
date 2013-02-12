@@ -1,3 +1,12 @@
-title.welcome = welcome
-title.register = register
+header.welcome = welcome
+header.register = register
+header.login = login
+
+title.index = cv registry
+title.register = register new user
 title.login = login
+
+button.login = login
+button.logout = logout
+button.register = register
+button.registernew = register new account

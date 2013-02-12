@@ -1,6 +1,6 @@
 @(form: Form[UserController.Login])
 
-@main("Login", Messages("title.login"), false) {
+@main(Messages("title.login"), Messages("header.login"), false) {
 	
 	@helper.form(action = routes.UserController.authenticate) {
 		@helper.inputText(form("username"))
@@ -12,8 +12,8 @@
             }
             <div class="row">
 		<div class="four colums centered">
-        	<button class="small button" type="submit">Login</button>
-        	<a href="/register" class="small button">Register new account</a>
+        	<button class="small button" type="submit">@Messages("button.login")</button>
+        	<a href="/register" class="small button">@Messages("button.registernew")</a>
         </div>
         </div>
 	}
