@@ -2,7 +2,7 @@
 
 @import controllers.routes.javascript._
 
-@main("Registration form", "Register", false) {
+@main("Registration form", Messages("title.register"), false) {
   	@helper.form(action = routes.UserController.newUser(), 'id -> "registerForm") {
 
 		<div class="wrapper">

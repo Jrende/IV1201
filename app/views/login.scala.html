@@ -1,6 +1,6 @@
 @(form: Form[UserController.Login])
 
-@main("Login", "Logga in", false) {
+@main("Login", Messages("title.login"), false) {
 	
 	@helper.form(action = routes.UserController.authenticate) {
 		@helper.inputText(form("username"))

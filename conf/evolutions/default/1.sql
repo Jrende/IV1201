@@ -4,15 +4,15 @@
 # --- !Ups
 
 create table competence (
-  id                        integer not null,
+  competence_id             integer not null,
   name                      varchar(255),
-  constraint pk_competence primary key (id))
+  constraint pk_competence primary key (competence_id))
 ;
 
 create table competence_profile (
   competence_profile_id     bigint not null,
   person_id_person_id       bigint,
-  competence_id             integer,
+  competence_competence_id  integer,
   years_of_experience       float,
   constraint pk_competence_profile primary key (competence_profile_id))
 ;
@@ -38,8 +38,8 @@ create sequence person_seq;
 
 alter table competence_profile add constraint fk_competence_profile_person_i_1 foreign key (person_id_person_id) references person (person_id) on delete restrict on update restrict;
 create index ix_competence_profile_person_i_1 on competence_profile (person_id_person_id);
-alter table competence_profile add constraint fk_competence_profile_competen_2 foreign key (competence_id) references competence (id) on delete restrict on update restrict;
-create index ix_competence_profile_competen_2 on competence_profile (competence_id);
+alter table competence_profile add constraint fk_competence_profile_competen_2 foreign key (competence_competence_id) references competence (competence_id) on delete restrict on update restrict;
+create index ix_competence_profile_competen_2 on competence_profile (competence_competence_id);
 
 
 
