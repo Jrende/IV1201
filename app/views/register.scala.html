@@ -2,7 +2,7 @@
 
 @import controllers.routes.javascript._
 
-@main("Registration form", "Register", false) {
+@main(Messages("title.register"), Messages("header.register"), false) {
   	@helper.form(action = routes.UserController.newUser(), 'id -> "registerForm") {
 
 		<div class="wrapper">
@@ -57,8 +57,7 @@
 			<div class="second" id="ssnOk" style="background-image: url(@routes.Assets.at("images/sprites.png"));background-position:0px -609px;width:20px;height:23px;display:inline-block;">
 			</div>
 		</div>
-
-		<input class="small button" type="submit" />
+		<button class="small button" type="submit">@Messages("button.register")</button>
 	}
 	<script src="@routes.UserController.javascriptRoutes" type="text/javascript">
 	</script>
