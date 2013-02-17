@@ -1,13 +1,49 @@
-@(currentUser: User, competenceList: List[Competence])
+@(currentUser: User, competenceList: List[Competence], competenceForm: Form[Index.CompetenceProfileForm])
+
+@import helper._
 
 @main("Index", "Play", true) {
     
 	<h1>Välkommen @currentUser.name</h1>
     
 	<h2>Lista på kompetenser</h2>
-	<ul>
-		@for(comp <- competenceList) {
-			<li>@comp.name</li>
+
+	@helper.form(action = routes.Index.addCompetence) {
+	<div class="row">
+	<div class="eight column">
+		@select(
+			competenceForm("competence"),
+			Competence.getAll.map{ c => 
+				c.toString -> (c.name)
+			},
+			'_default -> "Välj en kompetens.",
+			'_label -> "Competens",
+			'_error -> competenceForm("competence").error.map(_.withMessage("Välj en kompetens!"))
+		)
+	</div>
+	<div class="four column">
+		@helper.inputText(
+			competenceForm("yearsOfExperience"),
+			'_label -> "Års erfarenhet"
+	)
+	</div>
+	</div>
+	<div class="twelve column">
+		<a href="." class="small button">Add selected competence</a>
+	</div>
+	}
+	<div class="row">
+	<table>
+		<thead>
+			<th>Name of competence</th>
+			<th>Years of experience</th>
+		</thead>
+		@for(comp <- currentUser.competenceProfileList) {
+		<tr>
+			<td>@comp.competence.name</td>
+			<td>@comp.years_of_experience</td>
+		</tr>
 		}
-	</ul>
+	</table>
+	</div>
 }

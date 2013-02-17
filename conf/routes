@@ -4,6 +4,7 @@
 
 # Home page
 GET     /                           controllers.Index.index()
+POST    /                           controllers.Index.addCompetence()
 
 GET     /login                      controllers.UserController.login()
 POST    /login                      controllers.UserController.authenticate()

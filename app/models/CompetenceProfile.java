@@ -3,15 +3,19 @@ package models;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import play.data.format.Formats;
 import play.data.validation.Constraints;
 
+import play.db.ebean.Model;
 
 @Entity
-@Table(name = "competence_profile")
-public class CompetenceProfile {
+@Table(name = "competenceProfile")
+public class CompetenceProfile extends Model {
 	
 	@Id
 	@Formats.NonEmpty
@@ -19,8 +23,9 @@ public class CompetenceProfile {
 	
 	@Formats.NonEmpty
 	@Constraints.Required
-	@OneToOne
-	public User person_id;
+	@ManyToOne
+	@JoinColumn(name="person")
+	public User person;
 	
 	
 	@Formats.NonEmpty
@@ -31,6 +36,7 @@ public class CompetenceProfile {
 	@Formats.NonEmpty
 	@Constraints.Required
 	public float years_of_experience;
+
 	
 	
 	public String validate() {

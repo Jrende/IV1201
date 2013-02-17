@@ -33,4 +33,9 @@ public class Competence extends Model {
 	public static List<Competence> getAll() {
 		return find.all();
 	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
 }
