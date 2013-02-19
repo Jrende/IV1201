@@ -143,8 +143,6 @@ public class User extends Model {
 	/**
 	 * Digest string to md5 sum.
 	 * 
-	 * FIXME: replace with http://stackoverflow.com/questions/12250656/play-framework-cryptoaes-secret-key
-	 * 
 	 * @param string - String to digest.
 	 * @return returns digested string or null if any problems wore encountered.
 	 */
