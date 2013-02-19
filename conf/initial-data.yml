@@ -1,6 +1,6 @@
 # Users
 
-user:
+person:
 
     - !!models.User
         person_id: 0
@@ -9,4 +9,14 @@ user:
         name: Bertil
         password: ymQOxIo1jtNQ+1OcNOluIQ
         role: Recruiter
+# Competences
+
+competence: 
+    - !!models.Competence
+        competence_id: 1
+        name: Korvgrillning
+
+    - !!models.Competence
+        competence_id: 2
+        name: Karuselldrift
 

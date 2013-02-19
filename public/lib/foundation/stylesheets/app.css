@@ -8,20 +8,25 @@
 :: Page Name 2
 */
 
-
 /* -----------------------------------------
    Shared Styles
 ----------------------------------------- */
 
+html {
+	text-transform:capitalize;
+}
+
 .header {
 	border-bottom: 1px solid grey;
 	margin-bottom: 25px;
+
 }
 
 .logout {
 	float: right;
 	margin-top: 15px;
 }
+
 
 /* -----------------------------------------
    Page Name 1
