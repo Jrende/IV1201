@@ -11,6 +11,7 @@ import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
 import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "competence")
@@ -34,8 +35,21 @@ public class Competence extends Model {
 		return find.all();
 	}
 
+	public static Competence findById(int id) {
+        return find.where().eq("competence_id", id).findUnique();
+	}
+
 	@Override
 	public String toString() {
 		return name;
 	}
+
+	public static List<String> getList() {
+		List<String> ret = new ArrayList<String>();
+		for(Competence comp: getAll()) {
+			ret.add(Integer.toString(comp.competence_id));
+		}
+		return ret;
+	}
+
 }
