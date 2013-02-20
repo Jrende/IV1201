@@ -9,6 +9,8 @@ person:
         name: Bertil
         password: ymQOxIo1jtNQ+1OcNOluIQ
         role: Recruiter
+        email: bertil@example.com
+
 # Competences
 
 competence: 
