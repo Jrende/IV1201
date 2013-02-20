@@ -2,9 +2,9 @@
 
 @import helper._
 
-@main("Index", "Välkommen " + currentUser.name + "!", true) {
+@main(Messages("title.competence"), Messages("header.welcome")+ " " + currentUser.name + "!", true) {
 
-	<h2>Lista på kompetenser</h2>
+	<h2>@Messages("list.competences")</h2>
 
 	<div class="row">
 	@helper.form(action = routes.UserController.addCompetence) {
@@ -12,7 +12,7 @@
 		@select(
 			competenceForm("competence"),
 			options = options(Competence.getList()),
-			'_default -> "Välj en kompetens.",
+			'_default -> Messages("choose.competence"),
 			'_label -> "Competens",
 			'_error -> competenceForm("competence").error.map(_.withMessage("Välj en kompetens!"))
 		)
@@ -25,7 +25,7 @@
 	</div>
 	</div>
 	<div class="twelve column">
-		<input class="small button" type="submit" value="Add selected competence"/>
+		<button class="small button" type="submit">@Messages("button.addCompetence")</button>
 	</div>
 		@if(competenceForm.hasGlobalErrors) { 
         <p class="error">

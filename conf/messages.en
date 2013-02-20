@@ -5,11 +5,17 @@ header.login = login
 title.index = cv registry
 title.register = register new user
 title.login = login
+title.competence = edit competences
 
 button.login = login
 button.logout = logout
 button.register = register
 button.registernew = register new account
+button.addCompetence = add new competence
 
-competence.1 = Sausage grilling
-competence.2 = Carousel driving
+list.competences = competences:
+
+choose.competence = choose a competence
+
+competence.1 = sausage grilling
+competence.2 = carousel driving

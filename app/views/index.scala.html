@@ -4,14 +4,14 @@
 
 @main(Messages("title.index"), Messages("header.welcome") + " " + currentUser.name + "!", true) {
     
-	<h2>Lista på kompetenser</h2>
+	<h2>@Messages("list.competences")</h2>
 	<div class="row">
 	<table>
 		<thead>
 			<th>Name of competence</th>
 			<th>Years of experience</th>
 		</thead>
-		<a href="./competence">Lägg till nya kompetenser</a>
+		<a href="/competence" class="small button">@Messages("button.newCompetence")</a>
 		@for(comp <- currentUser.competenceProfileList) {
 		<tr>
 			<td>@Messages("competence." + comp.competence.competence_id)</td>
