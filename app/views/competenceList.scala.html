@@ -1,0 +1,18 @@
+@(currentUser: User, showAddButton: Boolean)
+
+@import helper._
+    
+	<div class="row">
+	<table class = "twelve">
+		<thead>
+			<th>@Messages("panel.competenceName")</th>
+			<th>@Messages("panel.competenceYears")</th>
+		</thead>
+		@for(comp <- currentUser.competenceProfileList) {
+		<tr>
+			<td>@Messages("competence." + comp.competence.competence_id)</td>
+			<td>@comp.years_of_experience</td>
+		</tr>
+		}
+	</table>
+	</div>
