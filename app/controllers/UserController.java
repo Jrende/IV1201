@@ -3,15 +3,33 @@ package controllers;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Map;
 
 import play.*;
 import play.mvc.*;
 import play.data.*;
+import play.data.format.*;
+
+import java.util.Locale;
+import java.text.ParseException;
 
 import models.*;
 import views.html.*;
 
 public class UserController extends Controller {
+
+	public static class CompetenceProfileForm {
+		public Competence competence;
+		public float yearsOfExperience;
+		/**
+		 * Validate whether the competence exists in database.
+		 * 
+		 * @return - null on success, else error message.
+		 */
+		public String validate() {
+			return null;
+		}
+	}
 
 	/**
 	 * Authentication
@@ -104,5 +122,52 @@ public class UserController extends Controller {
 						// Routes
 						controllers.routes.javascript.UserController.usernameAvailable())
 		);
+	}
+
+	@Security.Authenticated(Secured.class)
+	public static Result getCompetenceView() {
+		String username = Http.Context.current().request().username();
+		User user = User.findByUsername(username);
+		return ok(competenceView.render(user, form(CompetenceProfileForm.class)));
+	}
+
+	@Security.Authenticated(Secured.class)
+	public static Result addCompetence() {
+
+		String username = Http.Context.current().request().username();
+		User user = User.findByUsername(username);
+
+		//Adds a custom formatter to convert from string to Competence
+		Formatters.register(Competence.class, new Formatters.SimpleFormatter<Competence>() {
+			@Override
+			public Competence parse(String input, Locale arg1) throws ParseException {
+				System.out.println("Parsing!");
+				Competence comp = Competence.findById(Integer.parseInt(input));
+				return comp;
+			}
+			
+			@Override
+			public String print(Competence comp, Locale arg1) {
+				System.out.println("Printing!");
+				return Integer.toString(comp.competence_id);
+			}
+		});
+
+		Form<CompetenceProfileForm> compForm = form(CompetenceProfileForm.class).bindFromRequest();
+
+		if (compForm.hasErrors()) {
+			System.out.println("Compform has errors");
+			return badRequest(competenceView.render(user, form(CompetenceProfileForm.class)));
+		} else {
+			System.out.println("Compform was a success");
+			CompetenceProfile p = new CompetenceProfile();
+			p.person = user;
+			p.competence = compForm.get().competence;
+			p.years_of_experience = compForm.get().yearsOfExperience;
+			System.out.println(compForm.get().competence + ", " + compForm.get().yearsOfExperience);
+			user.competenceProfileList.add(p);
+			user.save();
+			return redirect(routes.Index.index());
+		}
 	}
 }

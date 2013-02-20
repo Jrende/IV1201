@@ -1,0 +1,50 @@
+@(currentUser: User, competenceForm: Form[UserController.CompetenceProfileForm])
+
+@import helper._
+
+@main("Index", "Välkommen " + currentUser.name + "!", true) {
+
+	<h2>Lista på kompetenser</h2>
+
+	<div class="row">
+	@helper.form(action = routes.UserController.addCompetence) {
+	<div class="eight column">
+		@select(
+			competenceForm("competence"),
+			options = options(Competence.getList()),
+			'_default -> "Välj en kompetens.",
+			'_label -> "Competens",
+			'_error -> competenceForm("competence").error.map(_.withMessage("Välj en kompetens!"))
+		)
+	</div>
+	<div class="four column">
+		@helper.inputText(
+			competenceForm("yearsOfExperience"),
+			'_label -> "Års erfarenhet"
+	)
+	</div>
+	</div>
+	<div class="twelve column">
+		<input class="small button" type="submit" value="Add selected competence"/>
+	</div>
+		@if(competenceForm.hasGlobalErrors) { 
+        <p class="error">
+        	@competenceForm.globalError.message
+        </p>
+            }
+	}
+	<div class="row">
+	<table>
+		<thead>
+			<th>Name of competence</th>
+			<th>Years of experience</th>
+		</thead>
+		@for(comp <- currentUser.competenceProfileList) {
+		<tr>
+			<td>@comp.competence.name</td>
+			<td>@comp.years_of_experience</td>
+		</tr>
+		}
+	</table>
+	</div>
+}

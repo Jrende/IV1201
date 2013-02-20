@@ -1,5 +1,23 @@
 @(currentUser: User)
 
-@main("Welcome",  "Welcome " + currentUser.name, true ) {
+@import helper._
+
+@main("Index", "Välkommen " + currentUser.name + "!", true) {
     
+	<h2>Lista på kompetenser</h2>
+	<div class="row">
+	<table>
+		<thead>
+			<th>Name of competence</th>
+			<th>Years of experience</th>
+		</thead>
+		<a href="./competence">Lägg till nya kompetenser</a>
+		@for(comp <- currentUser.competenceProfileList) {
+		<tr>
+			<td>@comp.competence.competence_id</td>
+			<td>@comp.years_of_experience</td>
+		</tr>
+		}
+	</table>
+	</div>
 }
