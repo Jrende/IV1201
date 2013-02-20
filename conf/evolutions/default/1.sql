@@ -9,12 +9,12 @@ create table competence (
   constraint pk_competence primary key (competence_id))
 ;
 
-create table competence_profile (
+create table competenceProfile (
   competence_profile_id     bigint not null,
-  person_id_person_id       bigint,
+  person                    bigint,
   competence_competence_id  integer,
   years_of_experience       float,
-  constraint pk_competence_profile primary key (competence_profile_id))
+  constraint pk_competenceProfile primary key (competence_profile_id))
 ;
 
 create table person (
@@ -32,14 +32,14 @@ create table person (
 
 create sequence competence_seq;
 
-create sequence competence_profile_seq;
+create sequence competenceProfile_seq;
 
 create sequence person_seq;
 
-alter table competence_profile add constraint fk_competence_profile_person_i_1 foreign key (person_id_person_id) references person (person_id) on delete restrict on update restrict;
-create index ix_competence_profile_person_i_1 on competence_profile (person_id_person_id);
-alter table competence_profile add constraint fk_competence_profile_competen_2 foreign key (competence_competence_id) references competence (competence_id) on delete restrict on update restrict;
-create index ix_competence_profile_competen_2 on competence_profile (competence_competence_id);
+alter table competenceProfile add constraint fk_competenceProfile_person_1 foreign key (person) references person (person_id) on delete restrict on update restrict;
+create index ix_competenceProfile_person_1 on competenceProfile (person);
+alter table competenceProfile add constraint fk_competenceProfile_competenc_2 foreign key (competence_competence_id) references competence (competence_id) on delete restrict on update restrict;
+create index ix_competenceProfile_competenc_2 on competenceProfile (competence_competence_id);
 
 
 
@@ -49,7 +49,7 @@ SET REFERENTIAL_INTEGRITY FALSE;
 
 drop table if exists competence;
 
-drop table if exists competence_profile;
+drop table if exists competenceProfile;
 
 drop table if exists person;
 
@@ -57,7 +57,7 @@ SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists competence_seq;
 
-drop sequence if exists competence_profile_seq;
+drop sequence if exists competenceProfile_seq;
 
 drop sequence if exists person_seq;
 

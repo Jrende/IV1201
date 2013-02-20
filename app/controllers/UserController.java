@@ -166,7 +166,7 @@ public class UserController extends Controller {
 			p.years_of_experience = compForm.get().yearsOfExperience;
 			System.out.println(compForm.get().competence + ", " + compForm.get().yearsOfExperience);
 			user.competenceProfileList.add(p);
-			user.save();
+			user.update();
 			return redirect(routes.Index.index());
 		}
 	}

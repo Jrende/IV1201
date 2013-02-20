@@ -175,6 +175,10 @@ public class User extends Model {
 		password = encrypt(password);		
 		super.save();
 	}
+
+	public void update() {
+		super.save();
+	}
 	
 	/**
 	 * Validate User registration form.

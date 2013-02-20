@@ -1,31 +1,32 @@
 @(currentUser: User, competenceForm: Form[UserController.CompetenceProfileForm])
 
 @import helper._
+@import scala._
 
-@main("Index", "Välkommen " + currentUser.name + "!", true) {
+@main(Messages("title.competence"), Messages("header.welcome")+ " " + currentUser.name + "!", true) {
 
-	<h2>Lista på kompetenser</h2>
+	<h2>@Messages("list.competences")</h2>
 
 	<div class="row">
 	@helper.form(action = routes.UserController.addCompetence) {
 	<div class="eight column">
 		@select(
 			competenceForm("competence"),
-			options = options(Competence.getList()),
-			'_default -> "Välj en kompetens.",
-			'_label -> "Competens",
-			'_error -> competenceForm("competence").error.map(_.withMessage("Välj en kompetens!"))
+			Competence.getList().zip(Competence.getList().map((i: String) => Messages("competence." + i.toInt))),
+			'_default -> Messages("choose.competence"),
+			'_label -> Messages("plain.competence"),
+			'_error -> competenceForm("competence").error.map(_.withMessage(Messages("choose.competence")))
 		)
 	</div>
 	<div class="four column">
 		@helper.inputText(
 			competenceForm("yearsOfExperience"),
-			'_label -> "Års erfarenhet"
+			'_label -> Messages("panel.competenceYears")
 	)
 	</div>
 	</div>
 	<div class="twelve column">
-		<input class="small button" type="submit" value="Add selected competence"/>
+		<button class="small button" type="submit">@Messages("button.addCompetence")</button>
 	</div>
 		@if(competenceForm.hasGlobalErrors) { 
         <p class="error">
@@ -34,17 +35,18 @@
             }
 	}
 	<div class="row">
+	</div>
 	<table>
 		<thead>
-			<th>Name of competence</th>
-			<th>Years of experience</th>
+			<th>@Messages("panel.competenceName")</th>
+			<th>@Messages("panel.competenceYears")</th>
 		</thead>
+		<a href="./competence">Lägg till nya kompetenser</a>
 		@for(comp <- currentUser.competenceProfileList) {
 		<tr>
-			<td>@comp.competence.name</td>
+			<td>@Messages("competence." + comp.competence.competence_id)</td>
 			<td>@comp.years_of_experience</td>
 		</tr>
 		}
 	</table>
-	</div>
 }

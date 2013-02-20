@@ -2,19 +2,19 @@
 
 @import helper._
 
-@main("Index", "Välkommen " + currentUser.name + "!", true) {
+@main(Messages("title.index"), Messages("header.welcome") + " " + currentUser.name + "!", true) {
     
-	<h2>Lista på kompetenser</h2>
+	<h2>@Messages("list.competences")</h2>
 	<div class="row">
 	<table>
 		<thead>
-			<th>Name of competence</th>
-			<th>Years of experience</th>
+			<th>@Messages("panel.competenceName")</th>
+			<th>@Messages("panel.competenceYears")</th>
 		</thead>
-		<a href="./competence">Lägg till nya kompetenser</a>
+		<a href="/competence" class="small button">@Messages("button.addCompetence")</a>
 		@for(comp <- currentUser.competenceProfileList) {
 		<tr>
-			<td>@comp.competence.competence_id</td>
+			<td>@Messages("competence." + comp.competence.competence_id)</td>
 			<td>@comp.years_of_experience</td>
 		</tr>
 		}
