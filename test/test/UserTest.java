@@ -8,68 +8,84 @@ import models.User;
 
 import org.junit.Test;
 
-public class UserTest {
+public class UserTest extends User {
 
 	/**
-	 * Find existing user.
+	 * Make shore we have users to make test case valid.
+	 */
+	@Test
+	public void userExists() {
+		running(fakeApplication(), new Runnable() {
+			public void run() {
+				assertThat(getAll().isEmpty()).isFalse();
+			}
+		});
+	}
+
+	/**
+	 * Make shore test user exists.
+	 */
+	@Test
+	public void testUserExists() {
+		running(fakeApplication(), new Runnable() {
+			public void run() {
+				assertThat(User.findByUsername("snigel")).isNotNull();
+			}
+		});
+	}
+
+	/**
+	 * Find existing user and make shore no other user is returned.
 	 */
 	@Test
 	public void findUser() {
 		running(fakeApplication(), new Runnable() {
 			public void run() {
-				assertThat(User.findByUsername("snigel").username).isEqualTo("snigel");
-			}
-		});
-	}
-	
-	/**
-	 * Make shore a non existing user does not return some other user.
-	 */
-	@Test
-	public void notFindUser() {
-		running(fakeApplication(), new Runnable() {
-			public void run() {
-				assertThat(User.findByUsername("Litreb")).isNull();
-			}
-		});
-	}
-	
-	/**
-	 * 
-	 */
-	@Test
-	public void badUser() {
-		running(fakeApplication(), new Runnable() {
-			public void run() {
-				assertThat(User.findByUsername("snigel").username).isNotEqualTo("fisk");
+				for (User user : find.all())
+					assertThat(User.findByUsername(user.username).username)
+							.isEqualTo(user.username);
 			}
 		});
 	}
 
 	/**
-	 * Find user by email
+	 * Make shore a non existing user return some existing user.
+	 */
+	@Test
+	public void notFindUser() {
+		running(fakeApplication(), new Runnable() {
+			public void run() {
+				assertThat(User.findByUsername("")).isNull();
+			}
+		});
+	}
+
+	/**
+	 * Find user by email and make shore no other user is returned.
 	 */
 	@Test
 	public void findByEmail() {
 		running(fakeApplication(), new Runnable() {
 			public void run() {
-				assertThat(User.findByEmail("bertil@example.com").email).isEqualTo("bertil@example.com");
+				for (User user : find.all())
+					assertThat(User.findByEmail(user.email).email).isEqualTo(
+							user.email);
 			}
 		});
 	}
-	
+
 	/**
-	 * Make shore findByEmail does not return any user for an non existing email.
+	 * Make shore findByEmail does not return any user for an non existing
+	 * email.
 	 */
 	@Test
 	public void notFindByEmail() {
 		running(fakeApplication(), new Runnable() {
 			public void run() {
-				assertThat(User.findByEmail("litreb@example.com")).isNull();
+				assertThat(User.findByEmail("")).isNull();
 			}
 		});
 	}
-	
 
 	/**
 	 * Test that authentication success for a correct password.
@@ -82,7 +98,7 @@ public class UserTest {
 			}
 		});
 	}
-	
+
 	/**
 	 * Test that authentication fails for an incorrect password.
 	 */
@@ -94,7 +110,7 @@ public class UserTest {
 			}
 		});
 	}
-	
+
 	/**
 	 * Test that an non existing email is available.
 	 */
@@ -102,11 +118,11 @@ public class UserTest {
 	public void emailAvailable() {
 		running(fakeApplication(), new Runnable() {
 			public void run() {
-				assertThat(User.emailAvailable("litber@example.com")).isTrue();
+				assertThat(User.emailAvailable("")).isTrue();
 			}
 		});
 	}
-	
+
 	/**
 	 * Test that an existing email is not available.
 	 */
@@ -114,35 +130,38 @@ public class UserTest {
 	public void emailNotAvailable() {
 		running(fakeApplication(), new Runnable() {
 			public void run() {
-				assertThat(User.emailAvailable("bertil@example.com")).isFalse();
+				for (User user : getAll())
+					assertThat(User.emailAvailable(user.email)).isFalse();
 			}
 		});
 	}
-	
+
 	/**
-	 * Test that an unsued user name is available.
+	 * Test that an unused user name is available.
 	 */
 	@Test
 	public void usernameAvailable() {
 		running(fakeApplication(), new Runnable() {
 			public void run() {
-				assertThat(User.usernameAvailable("litreb")).isTrue();
+				/* User name should be available but not valid */
+				assertThat(User.usernameAvailable("")).isTrue();
 			}
 		});
 	}
-	
+
 	/**
-	 * Test that a used user name is not available.
+	 * Test claimed that claimed user name is not available.
 	 */
 	@Test
 	public void usernameNotAvailable() {
 		running(fakeApplication(), new Runnable() {
 			public void run() {
-				assertThat(User.usernameAvailable("snigel")).isFalse();
+				for (User user : getAll())
+					assertThat(User.usernameAvailable(user.username)).isFalse();
 			}
 		});
 	}
-	
+
 	/**
 	 * Test that validation succeeds for correct new user.
 	 */
@@ -150,49 +169,51 @@ public class UserTest {
 	public void validateSuccess() {
 		running(fakeApplication(), new Runnable() {
 			public void run() {
-				User user = User.findByUsername("snigel");
+				User user = getAll().get(0);
 				user.email = "litreb@example.com";
 				user.username = "Litreb";
 				user.password = "password";
 				user.confirmPassword = "password";
-				
+
 				assertThat(user.validate()).isNull();
 			}
 		});
 	}
-	
+
 	/**
 	 * Test that validation fails for new user, bad password.
 	 */
 	@Test
-	public void validateFailPassword() {
+	public void validatePasswordFail() {
 		running(fakeApplication(), new Runnable() {
 			public void run() {
-				User user = User.findByUsername("snigel");
-				user.email = "litreb@example.com";
+				User user = getAll().get(0);
+				user.email = "";
 				user.username = "Litreb";
 				user.password = "password";
 				user.confirmPassword = "password1";
-				
-				assertThat(user.validate()).isEqualTo("Your password and confirmation password don't match");
+
+				assertThat(user.validate()).isEqualTo(
+						"Your password and confirmation password don't match");
 			}
 		});
 	}
-	
+
 	/**
 	 * Test that validation fails for new user, existing email.
 	 */
 	@Test
-	public void validateFailEmail() {
+	public void validateEmailFail() {
 		running(fakeApplication(), new Runnable() {
 			public void run() {
-				User user = User.findByUsername("snigel");
-				user.email = "bertil@example.com";
-				user.username = "Litreb";
-				user.password = "password";
-				user.confirmPassword = "password";
-				
-				assertThat(user.validate()).isEqualTo("Email already registered");
+				for (User user : getAll()) {
+					user.username = "";
+					user.password = "password";
+					user.confirmPassword = "password";
+
+					assertThat(user.validate()).isEqualTo(
+							"Email already registered");
+				}
 			}
 		});
 	}
@@ -201,31 +222,34 @@ public class UserTest {
 	 * Test that validation fails for new user, existing user name.
 	 */
 	@Test
-	public void validateFailUsername() {
+	public void validateUsernameFail() {
 		running(fakeApplication(), new Runnable() {
 			public void run() {
-				User user = User.findByUsername("snigel");
-				user.email = "litreb@example.com";
-				user.password = "password";
-				user.confirmPassword = "password";
-				
-				assertThat(user.validate()).isEqualTo("Username already registered");
+				for (User user : getAll()) {
+					user.email = "litreb@example.com";
+					user.password = "password";
+					user.confirmPassword = "password";
+
+					assertThat(user.validate()).isEqualTo(
+							"Username already registered");
+				}
 			}
 		});
 	}
-	
+
 	/**
-	 * Test that validation fails for an existing user.
+	 * Test that validation fails for an existing users.
 	 */
 	@Test
-	public void validateFailExisting() {
+	public void validateExistingUserFail() {
 		running(fakeApplication(), new Runnable() {
 			public void run() {
-				assertThat(User.findByUsername("snigel").validate()).isNotNull();
+				for (User user : getAll())
+					assertThat(user.validate()).isNotNull();
 			}
 		});
 	}
-	
+
 	/**
 	 * Test encryption
 	 */
@@ -233,7 +257,8 @@ public class UserTest {
 	public void validateEncryptionSuceess() {
 		running(fakeApplication(), new Runnable() {
 			public void run() {
-				assertThat(User.encrypt("snigel")).isEqualTo("ymQOxIo1jtNQ+1OcNOluIQ");
+				assertThat(User.encrypt("snigel")).isEqualTo(
+						"ymQOxIo1jtNQ+1OcNOluIQ");
 			}
 		});
 	}
@@ -242,12 +267,36 @@ public class UserTest {
 	 * Test encryption
 	 */
 	@Test
-	public void validateEncryptionFail() {
+	public void validateEncryptionFail1() {
 		running(fakeApplication(), new Runnable() {
 			public void run() {
-				assertThat(User.encrypt("snigel1")).isNotSameAs("ymQOxIo1jtNQ+1OcNOluIQ");
+				assertThat(User.encrypt("")).isNotNull();
+			}
+		});
+	}
+
+	/**
+	 * Test encryption
+	 */
+	@Test
+	public void validateEncryptionFail2() {
+		running(fakeApplication(), new Runnable() {
+			public void run() {
+				assertThat(User.encrypt("")).isNotSameAs("");
+			}
+		});
+	}
+
+	/**
+	 * Test encryption
+	 */
+	@Test
+	public void validateEncryptionFail3() {
+		running(fakeApplication(), new Runnable() {
+			public void run() {
+				assertThat(User.encrypt("snigel1")).isNotSameAs(
+						"ymQOxIo1jtNQ+1OcNOluIQ");
 			}
 		});
 	}
 }
-

@@ -1,6 +1,5 @@
 package test;
 
-import static org.junit.Assert.*;
 import static org.fest.assertions.Assertions.assertThat;
 import play.libs.WS;
 import static play.mvc.Http.Status.OK;
