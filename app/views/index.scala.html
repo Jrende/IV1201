@@ -2,7 +2,7 @@
 
 @import helper._
 
-@main("Index", "Välkommen " + currentUser.name + "!", true) {
+@main(Messages("title.index"), Messages("header.welcome") + currentUser.name + "!", true) {
     
 	<h2>Lista på kompetenser</h2>
 	<div class="row">
