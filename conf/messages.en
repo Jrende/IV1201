@@ -10,3 +10,6 @@ button.login = login
 button.logout = logout
 button.register = register
 button.registernew = register new account
+
+competence.1 = Sausage grilling
+competence.2 = Carousel driving
