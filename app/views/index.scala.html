@@ -8,10 +8,10 @@
 	<div class="row">
 	<table>
 		<thead>
-			<th>Name of competence</th>
-			<th>Years of experience</th>
+			<th>@Messages("panel.competenceName")</th>
+			<th>@Messages("panel.competenceYears")</th>
 		</thead>
-		<a href="/competence" class="small button">@Messages("button.newCompetence")</a>
+		<a href="/competence" class="small button">@Messages("button.addCompetence")</a>
 		@for(comp <- currentUser.competenceProfileList) {
 		<tr>
 			<td>@Messages("competence." + comp.competence.competence_id)</td>

@@ -13,6 +13,11 @@ button.register = register
 button.registernew = register new account
 button.addCompetence = add new competence
 
+panel.competenceName = name of competence
+panel.competenceYears = years of experience
+
+plain.competence = competence
+
 list.competences = competences:
 
 choose.competence = choose a competence
