@@ -8,6 +8,7 @@ import models.User;
 
 import org.junit.Test;
 
+@SuppressWarnings("serial")
 public class UserTest extends User {
 
 	/**
