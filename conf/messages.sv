@@ -13,6 +13,11 @@ button.register = registrera
 button.registernew = registrera ny användare
 button.addCompetence = lägg till kompetens
 
+panel.competenceName = typ av kompetens
+panel.competenceYears = år av erfarenhet
+
+plain.competence = kompetens
+
 list.competences = kompetenser:
 
 choose.competence = välj en kompetens

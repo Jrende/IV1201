@@ -13,14 +13,14 @@
 			competenceForm("competence"),
 			options = options(Competence.getList()),
 			'_default -> Messages("choose.competence"),
-			'_label -> "Competens",
-			'_error -> competenceForm("competence").error.map(_.withMessage("Välj en kompetens!"))
+			'_label -> Messages("plain.competence"),
+			'_error -> competenceForm("competence").error.map(_.withMessage(Messages("choose.competence")))
 		)
 	</div>
 	<div class="four column">
 		@helper.inputText(
 			competenceForm("yearsOfExperience"),
-			'_label -> "Års erfarenhet"
+			'_label -> Messages("panel.competenceYears")
 	)
 	</div>
 	</div>
@@ -36,8 +36,8 @@
 	<div class="row">
 	<table>
 		<thead>
-			<th>Name of competence</th>
-			<th>Years of experience</th>
+			<th>@Messages("panel.competenceName")</th>
+			<th>@Messages("panel.competenceYears")</th>
 		</thead>
 		@for(comp <- currentUser.competenceProfileList) {
 		<tr>
