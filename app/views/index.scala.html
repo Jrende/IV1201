@@ -14,7 +14,7 @@
 		<a href="./competence">Lägg till nya kompetenser</a>
 		@for(comp <- currentUser.competenceProfileList) {
 		<tr>
-			<td>@comp.competence.competence_id</td>
+			<td>@Messages("competence." + comp.competence.competence_id)</td>
 			<td>@comp.years_of_experience</td>
 		</tr>
 		}
