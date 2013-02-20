@@ -19,5 +19,3 @@ choose.competence = välj en kompetens
 
 competence.1 = korvgrillning
 competence.2 = karusellåkning
-
-
