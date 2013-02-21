@@ -94,7 +94,7 @@ public class UserController extends Controller {
 		Form<User> userForm = form(User.class).bindFromRequest();
 		if(userForm.hasErrors()) {
 			
-			System.out.println("Error :" + userForm.errorsAsJson());
+			//System.out.println("Error :" + userForm.errorsAsJson());
 			
 			return badRequest(register.render(userForm));
 		} else {
@@ -104,7 +104,7 @@ public class UserController extends Controller {
 	}
 	
 	/**
-	 * Is username free?
+	 * Check if username is available
 	 */
 	public static Result usernameAvailable(String username) {
 		if (User.usernameAvailable(username))
@@ -144,14 +144,14 @@ public class UserController extends Controller {
 		Formatters.register(Competence.class, new Formatters.SimpleFormatter<Competence>() {
 			@Override
 			public Competence parse(String input, Locale arg1) throws ParseException {
-				System.out.println("Parsing!");
+				//System.out.println("Parsing!");
 				Competence comp = Competence.findById(Integer.parseInt(input));
 				return comp;
 			}
 			
 			@Override
 			public String print(Competence comp, Locale arg1) {
-				System.out.println("Printing!");
+				//System.out.println("Printing!");
 				return Integer.toString(comp.competence_id);
 			}
 		});
@@ -159,15 +159,15 @@ public class UserController extends Controller {
 		Form<CompetenceProfileForm> compForm = form(CompetenceProfileForm.class).bindFromRequest();
 
 		if (compForm.hasErrors()) {
-			System.out.println("Compform has errors");
+			//System.out.println("Compform has errors");
 			return badRequest(applicantView.render(user, form(CompetenceProfileForm.class)));
 		} else {
-			System.out.println("Compform was a success");
+			//System.out.println("Compform was a success");
 			CompetenceProfile p = new CompetenceProfile();
 			p.person = user;
 			p.competence = compForm.get().competence;
 			p.years_of_experience = compForm.get().yearsOfExperience;
-			System.out.println(compForm.get().competence + ", " + compForm.get().yearsOfExperience);
+			//System.out.println(compForm.get().competence + ", " + compForm.get().yearsOfExperience);
 			user.competenceProfileList.add(p);
 			user.update();
 			return redirect(routes.Index.index());
