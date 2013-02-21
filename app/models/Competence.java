@@ -36,7 +36,7 @@ public class Competence extends Model {
 	}
 
 	public static Competence findById(int id) {
-        return find.where().eq("competence_id", id).findUnique();
+                return find.where().eq("competence_id", id).findUnique();
 	}
 
 	@Override
