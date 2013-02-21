@@ -165,7 +165,7 @@ public class UserController extends Controller {
 			
 			@Override
 			public String print(Competence comp, Locale arg1) {
-				return Integer.toString(comp.competence_id);
+				return Long.toString(comp.competence_id);
 			}
 		});
 
@@ -185,7 +185,7 @@ public class UserController extends Controller {
 
 	}
 	@Security.Authenticated(Secured.class)
-	public static Result removeCompetenceProfile(int id) {
+	public static Result removeCompetenceProfile(long id) {
 		String username = Http.Context.current().request().username();
 		User user = User.findByUsername(username);
 		CompetenceProfile comp = CompetenceProfile.findById(id);
