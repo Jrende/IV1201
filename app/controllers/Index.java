@@ -21,7 +21,9 @@ public class Index extends Controller {
 	public static Result index() {
 		String username = Http.Context.current().request().username();
 		User user = User.findByUsername(username);
-		return ok(index.render(user));
+		//Todo: Döp om competenceView till typ UserIndexView.
+		//Todo: Skicka olika vyer beroende på användartyp
+		return ok(competenceView.render(user, form(UserController.CompetenceProfileForm.class)));
 	}
 }
 
