@@ -3,7 +3,7 @@
 @import controllers.routes.javascript._
 
 @main(Messages("title.register"), Messages("header.register"), false) {
-	<div class="eight columns offset-by-two"
+	<div class="eight columns offset-by-two">
   	@helper.form(action = routes.UserController.newUser(), 'id -> "registerForm") {
 
 		<div class="wrapper">
@@ -60,6 +60,7 @@
 		</div>
 		<button class="small button" type="submit">@Messages("button.register")</button>
 	}
+	</div>
 	</div>
 	<script src="@routes.UserController.javascriptRoutes" type="text/javascript">
 	</script>
