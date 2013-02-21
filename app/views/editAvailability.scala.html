@@ -1,0 +1,21 @@
+@(currentUser: User, availabilityForm: Form[UserController.AvailabilityForm])
+
+	<h3>@Messages("availability")</h3>
+	
+	<div class="row">
+ 	@helper.form(action = routes.UserController.addAvailability) {
+ 		<div class="four column">
+		@helper.inputText(availabilityForm("from_date"), '_label -> Messages("from"))
+		</div>
+		<div class="four column">
+		@helper.inputText(availabilityForm("to_date"), '_label -> Messages("to"))
+		</div>
+		@if(availabilityForm.hasGlobalErrors) { 
+        <p class="error">
+        	@availabilityForm.globalError.message
+        </p>
+            }
+        
+        	<button class="small button compButton" type="submit">@Messages("save")</button>
+	</div>
+	}

@@ -16,6 +16,15 @@ button.logout = logga ut
 button.register = registrera
 button.registernew = registrera ny användare
 button.addCompetence = lägg till kompetens
+button.remove = ta bort
+
+change = ändra
+save = spara
+
+from = från
+to = till
+
+availability = tillgänglighet
 
 panel.competenceName = typ av kompetens
 panel.competenceYears = år av erfarenhet

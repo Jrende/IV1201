@@ -1,0 +1,18 @@
+@(currentUser: User)
+
+@import helper._
+
+	<div class="row">
+	<table class = "twelve">
+		<thead>
+			<th>@Messages("from")</th>
+			<th>@Messages("to")</th>
+		</thead>
+		@for(availability <- currentUser.availabilityList) {
+		<tr>
+			<td>@availability.from_date</td>
+			<td>@availability.to_date</td>
+		</tr>
+		}
+	</table>
+	</div>

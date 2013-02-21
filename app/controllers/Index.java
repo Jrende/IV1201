@@ -1,6 +1,7 @@
 
 package controllers;
 
+import controllers.UserController.AvailabilityForm;
 import play.*;
 import play.mvc.*;
 import play.data.*;
@@ -26,7 +27,7 @@ public class Index extends Controller {
 		User user = User.findByUsername(username);
 		switch(user.role) {
 			case Applicant:
-				return ok(applicantView.render(user, form(UserController.CompetenceProfileForm.class)));
+				return ok(applicantView.render(user, form(UserController.CompetenceProfileForm.class), form(AvailabilityForm.class)));
 			case Recruiter:
 				return ok(recruiterView.render(user, form(UserController.CompetenceProfileForm.class)));
 			default:

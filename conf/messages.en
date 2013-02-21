@@ -16,6 +16,15 @@ button.logout = logout
 button.register = register
 button.registernew = register new account
 button.addCompetence = add new competence
+button.remove = remove
+
+change = edit
+save = save
+
+from = from
+to = to
+
+availability = availability
 
 panel.competenceName = name of competence
 panel.competenceYears = years of experience
