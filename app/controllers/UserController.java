@@ -131,7 +131,7 @@ public class UserController extends Controller {
 	public static Result getCompetenceView() {
 		String username = Http.Context.current().request().username();
 		User user = User.findByUsername(username);
-		return ok(competenceView.render(user, form(CompetenceProfileForm.class)));
+		return ok(applicantView.render(user, form(CompetenceProfileForm.class)));
 	}
 
 	@Security.Authenticated(Secured.class)
@@ -160,7 +160,7 @@ public class UserController extends Controller {
 
 		if (compForm.hasErrors()) {
 			System.out.println("Compform has errors");
-			return badRequest(competenceView.render(user, form(CompetenceProfileForm.class)));
+			return badRequest(applicantView.render(user, form(CompetenceProfileForm.class)));
 		} else {
 			System.out.println("Compform was a success");
 			CompetenceProfile p = new CompetenceProfile();

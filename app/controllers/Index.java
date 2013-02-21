@@ -21,9 +21,18 @@ public class Index extends Controller {
 	public static Result index() {
 		String username = Http.Context.current().request().username();
 		User user = User.findByUsername(username);
-		//Todo: Döp om competenceView till typ UserIndexView.
+		//Todo: Döp om applicantView till typ UserIndexView.
 		//Todo: Skicka olika vyer beroende på användartyp
-		return ok(competenceView.render(user, form(UserController.CompetenceProfileForm.class)));
+		switch(user.role) {
+			case Applicant:
+				return ok(applicantView.render(user, form(UserController.CompetenceProfileForm.class)));
+			case Recruiter:
+				//return ok(recruiterView.render(user, form(UserController.CompetenceProfileForm.class)));
+				break;
+			default:
+				return internalServerError("Invalid role");
+		}
+		return internalServerError("Invalid role");
 	}
 }
 
