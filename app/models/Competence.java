@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class Competence extends Model {
 	
 	@Id
-	public int competence_id;
+	public long competence_id;
 
 	@Constraints.Required(message="Required")
 	@Formats.NonEmpty
@@ -35,7 +35,7 @@ public class Competence extends Model {
 		return find.all();
 	}
 
-	public static Competence findById(int id) {
+	public static Competence findById(long id) {
 		return find.where().eq("competence_id", id).findUnique();
 	}
 
@@ -47,7 +47,7 @@ public class Competence extends Model {
 	public static List<String> getList() {
 		List<String> ret = new ArrayList<String>();
 		for(Competence comp: getAll()) {
-			ret.add(Integer.toString(comp.competence_id));
+			ret.add(Long.toString(comp.competence_id));
 		}
 		return ret;
 	}

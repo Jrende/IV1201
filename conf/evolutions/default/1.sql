@@ -12,15 +12,15 @@ create table availability (
 ;
 
 create table competence (
-  competence_id             integer not null,
+  competence_id             bigint not null,
   name                      varchar(255),
   constraint pk_competence primary key (competence_id))
 ;
 
 create table competenceProfile (
-  competence_profile_id     integer not null,
+  competence_profile_id     bigint not null,
   person                    bigint,
-  competence_competence_id  integer,
+  competence_competence_id  bigint,
   years_of_experience       float,
   constraint pk_competenceProfile primary key (competence_profile_id))
 ;

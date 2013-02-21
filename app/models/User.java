@@ -92,7 +92,7 @@ public class User extends Model {
 		return find.where().eq("username", username).findUnique();
 	}
 
-	public static User findById(int id) {
+	public static User findById(long id) {
 		return find.where().eq("person_id", id).findUnique();
 	}
 
