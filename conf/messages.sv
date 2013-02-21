@@ -6,6 +6,7 @@ title.index = cv registrering
 title.register = registrera ny användare
 title.login = logga in
 title.competence = lägg till ny kompetens
+title.error = ett fel har inträffat 
 
 button.login = logga in
 button.logout = logga ut
