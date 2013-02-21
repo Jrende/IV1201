@@ -1,9 +1,9 @@
-@(currentUser: User, availabilityForm: Form[UserController.AvailabilityForm])
+@(currentUser: User, availabilityForm: Form[UserAvailabilityController.AvailabilityForm])
 
 	<h3>@Messages("availability")</h3>
 	
 	<div class="row">
- 	@helper.form(action = routes.UserController.addAvailability) {
+ 	@helper.form(action = routes.UserAvailabilityController.addAvailability) {
  		<div class="four column">
 		@helper.inputText(availabilityForm("from_date"), '_label -> Messages("from"))
 		</div>
