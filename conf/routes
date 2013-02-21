@@ -5,10 +5,11 @@
 # Home page
 GET     /                           controllers.Index.index()
 
-GET     /competence                 controllers.UserController.getCompetenceView()
 POST    /competence                 controllers.UserController.addCompetence()
 
 POST	/removecompetence/$id<[0-9]+>	controllers.UserController.removeCompetenceProfile(id: Int)
+
+POST    /availability               controllers.UserController.addAvailability()
 
 GET     /login                      controllers.UserController.login()
 POST    /login                      controllers.UserController.authenticate()

@@ -58,6 +58,9 @@ public class User extends Model {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
 	public List<CompetenceProfile> competenceProfileList;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "person_id")
+	public List<Availability> availabilityList;
 
 	public static Model.Finder<String, User> find = new Model.Finder(
 			String.class, User.class);

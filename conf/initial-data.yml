@@ -8,7 +8,7 @@ person:
         surname: Snigelsson
         name: Bertil
         password: ymQOxIo1jtNQ+1OcNOluIQ
-        role: Recruiter
+        role: Applicant
         email: bertil@example.com
 
 # Competences

@@ -3,6 +3,7 @@ package controllers;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 import java.util.Map;
 
 import play.*;
@@ -29,6 +30,22 @@ public class UserController extends Controller {
 		public String validate() {
 			if(competence == null) {
 				return "Please select a competence!";
+			}	
+			return null;
+		}
+	}
+	
+	public static class AvailabilityForm {
+		public Date to_date;
+		public Date from_date;
+		/**
+		 * Validate whether the competence exists in database.
+		 * 
+		 * @return - null on success, else error message.
+		 */
+		public String validate() {
+			if(to_date == null || from_date == null) {
+				return "Please specify both dates!";
 			}	
 			return null;
 		}
@@ -93,9 +110,6 @@ public class UserController extends Controller {
 	public static Result newUser() {
 		Form<User> userForm = form(User.class).bindFromRequest();
 		if(userForm.hasErrors()) {
-			
-			//System.out.println("Error :" + userForm.errorsAsJson());
-			
 			return badRequest(register.render(userForm));
 		} else {
 			userForm.get().save();
@@ -126,13 +140,13 @@ public class UserController extends Controller {
 						controllers.routes.javascript.UserController.usernameAvailable())
 		);
 	}
-
+/*
 	@Security.Authenticated(Secured.class)
 	public static Result getCompetenceView() {
 		String username = Http.Context.current().request().username();
 		User user = User.findByUsername(username);
-		return ok(applicantView.render(user, form(CompetenceProfileForm.class)));
-	}
+		return ok(applicantView.render(user, form(CompetenceProfileForm.class), form(AvailabilityForm.class)));
+	}*/
 
 	@Security.Authenticated(Secured.class)
 	public static Result addCompetence() {
@@ -144,14 +158,12 @@ public class UserController extends Controller {
 		Formatters.register(Competence.class, new Formatters.SimpleFormatter<Competence>() {
 			@Override
 			public Competence parse(String input, Locale arg1) throws ParseException {
-				//System.out.println("Parsing!");
 				Competence comp = Competence.findById(Integer.parseInt(input));
 				return comp;
 			}
 			
 			@Override
 			public String print(Competence comp, Locale arg1) {
-				//System.out.println("Printing!");
 				return Integer.toString(comp.competence_id);
 			}
 		});
@@ -159,15 +171,12 @@ public class UserController extends Controller {
 		Form<CompetenceProfileForm> compForm = form(CompetenceProfileForm.class).bindFromRequest();
 
 		if (compForm.hasErrors()) {
-			//System.out.println("Compform has errors");
-			return badRequest(applicantView.render(user, form(CompetenceProfileForm.class)));
+			return badRequest(applicantView.render(user, form(CompetenceProfileForm.class), form(AvailabilityForm.class)));
 		} else {
-			//System.out.println("Compform was a success");
 			CompetenceProfile p = new CompetenceProfile();
 			p.person = user;
 			p.competence = compForm.get().competence;
 			p.years_of_experience = compForm.get().yearsOfExperience;
-			//System.out.println(compForm.get().competence + ", " + compForm.get().yearsOfExperience);
 			user.competenceProfileList.add(p);
 			user.update();
 			return redirect(routes.Index.index());
@@ -188,4 +197,25 @@ public class UserController extends Controller {
 		comp.delete();
 		return redirect(routes.Index.index());
 	}
+	
+	@Security.Authenticated(Secured.class)
+	public static Result addAvailability() {
+		String username = Http.Context.current().request().username();
+		User user = User.findByUsername(username);
+		Form<AvailabilityForm> compForm = form(AvailabilityForm.class).bindFromRequest();
+		
+		if (compForm.hasErrors()) {
+			return badRequest(applicantView.render(user, form(CompetenceProfileForm.class), form(AvailabilityForm.class)));
+		} 
+		else {
+			Availability a = new Availability();
+			a.person_id = user;
+			a.from_date = compForm.get().from_date;
+			a.to_date = compForm.get().to_date;
+			user.availabilityList.add(a);
+			user.update();
+			return redirect(routes.Index.index());
+		}
+	}
+	
 }

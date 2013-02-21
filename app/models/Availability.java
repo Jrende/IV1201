@@ -1,7 +1,6 @@
 package models;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -24,12 +23,14 @@ public class Availability {
 	@Formats.NonEmpty
 	@Constraints.Required
 	@ManyToOne
-	@JoinColumn(name="person")
-	public Long person_id;  
+	@JoinColumn(name="person_id")
+	public User person_id;  
 	
+	@Formats.NonEmpty
     @Formats.DateTime(pattern="yyyy-MM-dd")
     public Date from_date;
     
+	@Formats.NonEmpty
     @Formats.DateTime(pattern="yyyy-MM-dd")
     public Date to_date;
     
@@ -45,7 +46,6 @@ public class Availability {
 	 * @return null if validation is successful, else error message is returned.
 	 */
 	public String validate() {
-	
 		return null;
 	}
 

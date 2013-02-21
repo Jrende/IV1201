@@ -1,4 +1,4 @@
-@(currentUser: User, competenceForm: Form[UserController.CompetenceProfileForm])
+@(currentUser: User, competenceForm: Form[UserController.CompetenceProfileForm], availabilityForm: Form[UserController.AvailabilityForm])
 
 @import helper._
 @import scala._
@@ -37,5 +37,6 @@
    </div>
 	
 	@competenceList(currentUser, false)
-	
+	@editAvailability(currentUser, availabilityForm)
+	@availabilityList(currentUser)
 }
