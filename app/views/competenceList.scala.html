@@ -7,7 +7,7 @@
 		<thead>
 			<th>@Messages("panel.competenceName")</th>
 			<th>@Messages("panel.competenceYears")</th>
-			<th>@Messages("panel.removeButton")</th>
+			<th>@Messages("change")</th>
 		</thead>
 		@for(comp <- currentUser.competenceProfileList) {
 		<tr>
@@ -15,7 +15,7 @@
 			<td>@comp.years_of_experience</td>
 			<td>
 				<form action="./removecompetence/@comp.competence_profile_id" method="POST">
-					<button type="submit" class="button small">Ta bort kompetens</button>
+					<button type="submit" class="button small">@Messages("button.remove")</button>
 				</form>
 			</td>
 		</tr>
