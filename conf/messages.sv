@@ -8,6 +8,9 @@ title.login = logga in
 title.competence = lägg till ny kompetens
 title.error = ett fel har inträffat 
 
+error.competenceProfileNotFound = den valda kompetensprofilen hittades inte
+error.competenceProfileNotYours = du kan inte ta bort kompetensprofiler du inte äger
+
 button.login = logga in
 button.logout = logga ut
 button.register = registrera

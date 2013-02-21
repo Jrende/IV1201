@@ -8,6 +8,9 @@ title.login = login
 title.competence = edit competences
 title.error = an error occured
 
+error.competenceProfileNotFound = competence profile not found
+error.competenceProfileNotYours = you can't removed competence profiles not belonging to you
+
 button.login = login
 button.logout = logout
 button.register = register

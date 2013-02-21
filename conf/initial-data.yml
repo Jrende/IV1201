@@ -11,6 +11,15 @@ person:
         role: Recruiter
         email: bertil@example.com
 
+    - !!models.User
+        person_id: 1
+        username: vanlig
+        surname: Typ
+        name: Vanlig
+        password: ymQOxIo1jtNQ+1OcNOluIQ
+        role: Applicant
+        email: mail@example.com
+
 # Competences
 
 competence: 

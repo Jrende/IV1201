@@ -34,6 +34,7 @@ create table person (
   role                      integer,
   password                  varchar(255),
   ssn                       varchar(255),
+  is_hired                  boolean,
   constraint ck_person_role check (role in (0,1)),
   constraint pk_person primary key (person_id))
 ;

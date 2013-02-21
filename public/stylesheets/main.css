@@ -31,4 +31,19 @@
 	display: inline-block;
 }
 
-
+table.minimal {
+	margin-top: 0.5em;
+}
+table.minimal td {
+	padding: 0;	
+	padding-top: 0.25em;	
+	padding-bottom: 0.25em;	
+	padding-left: 1.0em;	
+}
+table.minimal th {
+	font-weight: normal;
+	padding: 0;	
+}
+form.block {
+	display: inline-block;
+}

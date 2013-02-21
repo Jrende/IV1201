@@ -59,6 +59,8 @@ public class User extends Model {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
 	public List<CompetenceProfile> competenceProfileList;
 
+	public boolean isHired;
+
 	public static Model.Finder<String, User> find = new Model.Finder(
 			String.class, User.class);
 
@@ -87,6 +89,10 @@ public class User extends Model {
 		return find.where().eq("username", username).findUnique();
 	}
 
+	public static User findById(int id) {
+		return find.where().eq("person_id", id).findUnique();
+	}
+
 	/**
 	 * Retrieve User by username and password pair. Used to authenticates a
 	 * User.
@@ -109,6 +115,16 @@ public class User extends Model {
 	 */
 	public static List<User> getAll() {
 		return find.all();
+	}
+
+
+	/**
+	 * Return a list of all Users with the applicant role.
+	 * 
+	 * @return List of all applicants.
+	 */
+	public static List<User> getAllApplicants() {
+		return find.where().eq("role", Role.Applicant.ordinal()).findList();
 	}
 
 	/**

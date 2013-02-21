@@ -9,6 +9,7 @@ import play.*;
 import play.mvc.*;
 import play.data.*;
 import play.data.format.*;
+import play.i18n.*;
 
 import java.util.Locale;
 import java.text.ParseException;
@@ -180,12 +181,13 @@ public class UserController extends Controller {
 		User user = User.findByUsername(username);
 		CompetenceProfile comp = CompetenceProfile.findById(id);
 		if(comp == null) {
-			return badRequest(error.render("Competence profile not found"));
+			return badRequest(error.render(Messages.get("error.competenceProfileNotFound")));
 		}
 		if(comp.person.person_id != user.person_id) {
-			return badRequest(error.render("You are not the owner of that competence!"));
+			return badRequest(error.render(Messages.get("error.competenceProfileNotYours")));
 		}
 		comp.delete();
 		return redirect(routes.Index.index());
 	}
+
 }
