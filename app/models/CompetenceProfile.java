@@ -19,7 +19,7 @@ public class CompetenceProfile extends Model {
 	
 	@Id
 	@Formats.NonEmpty
-	public long  competence_profile_id;
+	public int competence_profile_id;
 	
 	@Formats.NonEmpty
 	@Constraints.Required
@@ -37,8 +37,12 @@ public class CompetenceProfile extends Model {
 	@Constraints.Required
 	public float years_of_experience;
 
+	public static Model.Finder<String, CompetenceProfile> find = new Model.Finder(String.class, CompetenceProfile.class);
 	
-	
+	public static CompetenceProfile findById(int id) {
+		return find.where().eq("competence_profile_id", id).findUnique();
+	}
+
 	public String validate() {
 		return null;
 	}

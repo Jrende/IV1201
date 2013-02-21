@@ -8,6 +8,8 @@ GET     /                           controllers.Index.index()
 GET     /competence                 controllers.UserController.getCompetenceView()
 POST    /competence                 controllers.UserController.addCompetence()
 
+POST	/removecompetence/:id		controllers.UserController.removeCompetenceProfile(id: Int)
+
 GET     /login                      controllers.UserController.login()
 POST    /login                      controllers.UserController.authenticate()
 GET     /logout                     controllers.UserController.logout()
