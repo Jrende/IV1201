@@ -1,7 +1,7 @@
 @(form: Form[UserController.Login])
 
 @main(Messages("title.login"), Messages("header.login"), false) {
-	
+	<div class="four colums offset-by-four">
 	@helper.form(action = routes.UserController.authenticate) {
 		@helper.inputText(form("username"))
 		@helper.inputPassword(form("password"))
@@ -10,11 +10,8 @@
         	@form.globalError.message
         </p>
             }
-            <div class="row">
-		<div class="four colums centered">
         	<button class="small button" type="submit">@Messages("button.login")</button>
         	<a href="/register" class="small button">@Messages("button.registernew")</a>
-        </div>
-        </div>
+     </div>
 	}
 }

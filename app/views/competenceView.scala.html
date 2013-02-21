@@ -5,11 +5,10 @@
 
 @main(Messages("title.competence"), Messages("header.welcome")+ " " + currentUser.name + "!", true) {
 
-	<h2>@Messages("list.competences")</h2>
+	<h3>@Messages("list.competences")</h3>
 
-	<div class="row">
 	@helper.form(action = routes.UserController.addCompetence) {
-	<div class="eight column">
+	<div class="four column">
 		@select(
 			competenceForm("competence"),
 			Competence.getList().zip(Competence.getList().map((i: String) => Messages("competence." + i.toInt))),
@@ -24,29 +23,18 @@
 			'_label -> Messages("panel.competenceYears")
 	)
 	</div>
+	<div class="four column">
+		<button class="small button compButton" type="submit">@Messages("button.addCompetence")</button>
+	}
 	</div>
-	<div class="twelve column">
-		<button class="small button" type="submit">@Messages("button.addCompetence")</button>
-	</div>
-		@if(competenceForm.hasGlobalErrors) { 
+	
+	<div class="twelve column">		
+	@if(competenceForm.hasGlobalErrors) { 
         <p class="error">
         	@competenceForm.globalError.message
         </p>
             }
-	}
-	<div class="row">
-	</div>
-	<table>
-		<thead>
-			<th>@Messages("panel.competenceName")</th>
-			<th>@Messages("panel.competenceYears")</th>
-		</thead>
-		<a href="./competence">Lägg till nya kompetenser</a>
-		@for(comp <- currentUser.competenceProfileList) {
-		<tr>
-			<td>@Messages("competence." + comp.competence.competence_id)</td>
-			<td>@comp.years_of_experience</td>
-		</tr>
-		}
-	</table>
+   </div>
+	
+	@competenceList(currentUser, false)
 }
