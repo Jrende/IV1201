@@ -3,6 +3,14 @@
 
 # --- !Ups
 
+create table availability (
+  availability_id           bigint not null,
+  person_id                 bigint,
+  from_date                 timestamp,
+  to_date                   timestamp,
+  constraint pk_availability primary key (availability_id))
+;
+
 create table competence (
   competence_id             integer not null,
   name                      varchar(255),
@@ -10,7 +18,7 @@ create table competence (
 ;
 
 create table competenceProfile (
-  competence_profile_id     bigint not null,
+  competence_profile_id     integer not null,
   person                    bigint,
   competence_competence_id  integer,
   years_of_experience       float,
@@ -30,6 +38,8 @@ create table person (
   constraint pk_person primary key (person_id))
 ;
 
+create sequence availability_seq;
+
 create sequence competence_seq;
 
 create sequence competenceProfile_seq;
@@ -47,6 +57,8 @@ create index ix_competenceProfile_competenc_2 on competenceProfile (competence_c
 
 SET REFERENTIAL_INTEGRITY FALSE;
 
+drop table if exists availability;
+
 drop table if exists competence;
 
 drop table if exists competenceProfile;
@@ -54,6 +66,8 @@ drop table if exists competenceProfile;
 drop table if exists person;
 
 SET REFERENTIAL_INTEGRITY TRUE;
+
+drop sequence if exists availability_seq;
 
 drop sequence if exists competence_seq;
 

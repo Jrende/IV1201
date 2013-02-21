@@ -27,12 +27,10 @@ public class Index extends Controller {
 			case Applicant:
 				return ok(applicantView.render(user, form(UserController.CompetenceProfileForm.class)));
 			case Recruiter:
-				//return ok(recruiterView.render(user, form(UserController.CompetenceProfileForm.class)));
-				break;
+				return ok(recruiterView.render(user, form(UserController.CompetenceProfileForm.class)));
 			default:
 				return internalServerError("Invalid role");
 		}
-		return internalServerError("Invalid role");
 	}
 }
 

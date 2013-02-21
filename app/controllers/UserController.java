@@ -180,12 +180,10 @@ public class UserController extends Controller {
 		User user = User.findByUsername(username);
 		CompetenceProfile comp = CompetenceProfile.findById(id);
 		if(comp == null) {
-			//return badRequest(errorView.render("Competence profile not found");
-			return internalServerError("Competence profile not found");
+			return badRequest(error.render("Competence profile not found"));
 		}
 		if(comp.person.person_id != user.person_id) {
-			//return badRequest(errorView.render("You are not the owner of that competence!");
-			return internalServerError("Not authorized.");
+			return badRequest(error.render("You are not the owner of that competence!"));
 		}
 		comp.delete();
 		return redirect(routes.Index.index());
