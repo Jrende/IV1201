@@ -7,12 +7,12 @@ GET     /                           controllers.Index.index()
 
 POST    /competence                 controllers.UserController.addCompetence()
 
-POST	/removecompetence/:id		controllers.UserController.removeCompetenceProfile(id: Long)
+POST	/removecompetence/:id		controllers.UserController.removeCompetenceProfile(id: Int)
 
-GET     /user/:id			        controllers.RecruiterController.getDetailedUserView(id: Long)
+GET     /user/:id			        controllers.RecruiterController.getDetailedUserView(id: Int)
 
-POST	/hireApplicant/:id			controllers.RecruiterController.hireApplicant(id: Long)
-POST	/denyApplicant/:id			controllers.RecruiterController.denyApplicant(id: Long)
+POST	/hireApplicant/:id			controllers.RecruiterController.hireApplicant(id: Int)
+POST	/denyApplicant/:id			controllers.RecruiterController.denyApplicant(id: Int)
 
 POST    /availability               controllers.UserController.addAvailability()
 

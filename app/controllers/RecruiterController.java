@@ -20,8 +20,7 @@ import views.html.*;
 @Security.Authenticated(Secured.class)
 public class RecruiterController extends Controller {
 	
-	public static Result getDetailedUserView(long id) {
-		System.out.println("ID: " + id);
+	public static Result getDetailedUserView(int id) {
 		String username = Http.Context.current().request().username();
 		User user = User.findByUsername(username);
 		if(user.role != Role.Recruiter) {
@@ -36,8 +35,7 @@ public class RecruiterController extends Controller {
 		return ok(userView.render(chosenUser));
 	}
 
-	public static Result hireApplicant(long id) {
-		System.out.println("ID: " + id);
+	public static Result hireApplicant(int id) {
 		String username = Http.Context.current().request().username();
 		User currentUser = User.findByUsername(username);
 		if(currentUser.role != Role.Recruiter) {
@@ -50,12 +48,10 @@ public class RecruiterController extends Controller {
 		System.out.println("Hire user");
 		chosenUser.isHired = true;
 		chosenUser.update();
-		//return redirect(routes.RecruiterController.getDetailedUserView(Integer.parseInt(Long.toString(id))));
-		return redirect(routes.Index.index());
+		return redirect(routes.RecruiterController.getDetailedUserView(id));
 	}
 
-	public static Result denyApplicant(long id) {
-		System.out.println("ID: " + id);
+	public static Result denyApplicant(int id) {
 		String username = Http.Context.current().request().username();
 		User currentUser = User.findByUsername(username);
 		if(currentUser.role != Role.Recruiter) {
@@ -68,7 +64,6 @@ public class RecruiterController extends Controller {
 		System.out.println("Deny user");
 		chosenUser.isHired = false;
 		chosenUser.update();
-		//return redirect(routes.RecruiterController.getDetailedUserView(Integer.parseInt(Long.toString(id))));
-		return redirect(routes.Index.index());
+		return redirect(routes.RecruiterController.getDetailedUserView(id));
 	}
 }
