@@ -60,3 +60,6 @@ competence.1 = sausage grilling
 competence.2 = carousel driving
 
 constraints.required = Required
+
+user.isHired = You've been hired!
+user.notHiredYet = You'ven't been hired yet

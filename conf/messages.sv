@@ -63,3 +63,6 @@ competence.1 = korvgrillning
 competence.2 = karusellåkning
 
 constraints.required = Obligatorisk
+
+user.isHired = Du har blivit anställd!
+user.notHiredYet = Du har inte blivit anställd än
