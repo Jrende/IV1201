@@ -13,6 +13,8 @@ GET     /user/:id			        controllers.RecruiterController.getDetailedUserView(
 
 POST	/hireApplicant/:id			controllers.RecruiterController.hireApplicant(id: Int)
 POST	/denyApplicant/:id			controllers.RecruiterController.denyApplicant(id: Int)
+GET 	/printApplicantPDF/:id		controllers.RecruiterController.printApplicantPDF(id: Int)
+
 
 POST    /availability               controllers.UserAvailabilityController.addAvailability()
 

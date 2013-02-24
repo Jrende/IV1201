@@ -27,5 +27,8 @@
 	<form class="block" action="/denyApplicant/@chosenUser.person_id" method="POST">
 		<button class="button large">@Messages("button.deny")</button>
 	</form>
+	<form class="block" action="/printApplicantPDF/@chosenUser.person_id" method="GET">
+		<button class="button large">@Messages("button.pdf")</button>
+	</form>
 	</div>
 }
