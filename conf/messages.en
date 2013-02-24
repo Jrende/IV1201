@@ -1,15 +1,21 @@
 header.welcome = welcome
 header.register = register
 header.login = login
+header.userview = applicant
 
 title.index = cv registry
 title.register = register new user
 title.login = login
+title.userview = applicant
 title.competence = edit competences
 title.error = an error occured
 
 error.competenceProfileNotFound = competence profile not found
 error.competenceProfileNotYours = you can't removed competence profiles not belonging to you
+error.notAuthorized = only recruiters can visit this page
+error.userNotFound = the selected user wasn't found
+
+userlist.users = Users
 
 button.login = login
 button.logout = logout
@@ -17,6 +23,8 @@ button.register = register
 button.registernew = register new account
 button.addCompetence = add new competence
 button.remove = remove
+button.hire = hire
+button.deny = deny
 
 change = edit
 save = save
@@ -29,11 +37,29 @@ availability = availability
 panel.competenceName = name of competence
 panel.competenceYears = years of experience
 
-plain.competence = competence
-
 list.competences = competences:
 
+plain.username = username
+choose.username = enter a username
+choose.password = enter you password
+plain.password = password
+choose.confirmPassword = enter your password again
+plain.confirmPassword = password
+choose.email = enter your email adress
+plain.email = email adress
+choose.name = enter your first name
+plain.name = first name
+choose.surname = enter your surname
+plain.surname = surname
+choose.ssn = enter your SSN
+plain.ssn = SSN
 choose.competence = choose a competence
+plain.competence = competence
 
 competence.1 = sausage grilling
 competence.2 = carousel driving
+
+constraints.required = Required
+
+user.isHired = You've been hired!
+user.notHiredYet = You'ven't been hired yet

@@ -5,7 +5,13 @@
 
 @main(Messages("title.competence"), Messages("header.welcome")+ " " + currentUser.name + "!", true) {
 
-	<h2>@currentUser.isHired</h2>
+<h2>
+	@if(currentUser.isHired) {
+		@Messages("user.isHired") 
+	} else {
+		@Messages("user.notHiredYet")
+	}
+</h2>
 	<h3>@Messages("list.competences")</h3>
 
 	@helper.form(action = routes.UserController.addCompetence) {
