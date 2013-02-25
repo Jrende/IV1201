@@ -5,13 +5,17 @@
 	<div class="row">
 	<table class = "twelve">
 		<thead>
-			<th>@Messages("from")</th>
-			<th>@Messages("to")</th>
+			<th>@Messages("availability")</th>
+			<th>@Messages("change")</th>
 		</thead>
 		@for(availability <- currentUser.availabilityList) {
 		<tr>
-			<td>@availability.from_date</td>
-			<td>@availability.to_date</td>
+			<td>@availability.toString</td>
+			<td>
+				<form action="./removeavailability/@availability.availability_id" method="POST">
+					<button type="submit" class="small alert button">@Messages("button.remove")</button>
+				</form>
+			</td>
 		</tr>
 		}
 	</table>

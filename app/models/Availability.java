@@ -1,5 +1,6 @@
 package models;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -11,10 +12,14 @@ import javax.persistence.Table;
 import play.data.format.Formats;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
+import play.i18n.Messages;
 
+/**
+ * Availability entity managed by Ebean
+ */
 @Entity
 @Table(name = "availability")
-public class Availability {
+public class Availability extends Model{
 	
 	@Id
 	@Formats.NonEmpty
@@ -34,7 +39,10 @@ public class Availability {
     @Formats.DateTime(pattern="yyyy-MM-dd")
     public Date to_date;
     
-    public static Model.Finder<String, Availability> find = new Model.Finder(String.class, Availability.class);
+    /**
+     * Generic query helper for entity Availability with id Long
+     */
+    public static Model.Finder<Long, Availability> find = new Model.Finder(Long.class, Availability.class);
     
 	public static Availability findById(Long id) {
 		return find.where().eq("availability_id", id).findUnique();
@@ -47,6 +55,10 @@ public class Availability {
 	 */
 	public String validate() {
 		return null;
+	}
+	
+	public String toString() {
+		return new SimpleDateFormat("yyyy-MM-dd").format(from_date) + " " + Messages.get("to") + " " + new SimpleDateFormat("yyyy-MM-dd").format(to_date);
 	}
 
 

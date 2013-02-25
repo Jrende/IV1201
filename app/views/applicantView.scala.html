@@ -5,14 +5,14 @@
 
 @main(Messages("title.competence"), Messages("header.welcome")+ " " + currentUser.name + "!", true) {
 
-<h2>
+<h3>
 	@if(currentUser.isHired) {
 		@Messages("user.isHired") 
 	} else {
 		@Messages("user.notHiredYet")
 	}
-</h2>
-	<h3>@Messages("list.competences")</h3>
+</h3>
+	<h4>@Messages("list.competences")</h4>
 
 	@helper.form(action = routes.UserController.addCompetence) {
 	<div class="four column">

@@ -17,6 +17,7 @@ GET 	/printApplicantPDF/:id		controllers.RecruiterController.printApplicantPDF(i
 
 
 POST    /availability               controllers.UserAvailabilityController.addAvailability()
+POST	/removeavailability/:id		controllers.UserAvailabilityController.deleteAvailability(id: Long)
 
 GET     /login                      controllers.UserController.login()
 POST    /login                      controllers.UserController.authenticate()

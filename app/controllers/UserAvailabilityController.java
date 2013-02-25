@@ -12,13 +12,21 @@ import play.mvc.Security;
 import play.data.*;
 import views.html.applicantView;
 
-public class UserAvailabilityController extends Controller{
+/**
+ * Manage a database of Availabilitys
+ */
+public class UserAvailabilityController extends Controller {
 	
+	/**
+	 * Class representing Availability as a Form
+	 *
+	 */
 	public static class AvailabilityForm {
 		public Date to_date;
 		public Date from_date;
+		
 		/**
-		 * Validate whether the competence exists in database.
+		 * Validate that both to_date and end_date is specified.
 		 * 
 		 * @return - null on success, else error message.
 		 */
@@ -30,6 +38,10 @@ public class UserAvailabilityController extends Controller{
 		}
 	}
 	
+	/**
+	 * 
+	 * @return - Redirects back to form on error, otherwise saves new Availability and redirects to index
+	 */
 	@Security.Authenticated(Secured.class)
 	public static Result addAvailability() {
 		String username = Http.Context.current().request().username();
@@ -49,5 +61,14 @@ public class UserAvailabilityController extends Controller{
 			return redirect(routes.Index.index());
 		}
 	}
+	
+	  /**
+     * Handle availability deletion
+     */
+	@Security.Authenticated(Secured.class)
+    public static Result deleteAvailability(Long id) {
+        Availability.findById(id).delete();
+        return redirect(routes.Index.index());
+    }
 
 }
