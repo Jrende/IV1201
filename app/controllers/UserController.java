@@ -171,14 +171,14 @@ public class UserController extends Controller {
 
 	}
 	@Security.Authenticated(Secured.class)
-	public static Result removeCompetenceProfile(long id) {
+	public static Result removeCompetenceProfile(int id) {
 		String username = Http.Context.current().request().username();
 		User user = User.findByUsername(username);
 		CompetenceProfile comp = CompetenceProfile.findById(id);
 		if(comp == null) {
 			return badRequest(error.render(Messages.get("error.competenceProfileNotFound")));
 		}
-		if(comp.person.person_id != user.person_id) {
+		if(!comp.person.person_id.equals(user.person_id)) {
 			return badRequest(error.render(Messages.get("error.competenceProfileNotYours")));
 		}
 		comp.delete();
