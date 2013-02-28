@@ -1,5 +1,9 @@
 package controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import play.mvc.*;
 import play.i18n.*;
 
@@ -83,16 +87,28 @@ public class RecruiterController extends Controller {
 	 */
 	public static Result printApplicantPDF(int id) {
 		String username = Http.Context.current().request().username();
-		User user = User.findByUsername(username);
-		if(user.role != Role.Recruiter) {
+		User admin = User.findByUsername(username);
+		
+		if(admin.role != Role.Recruiter) {
 			return badRequest(error.render(Messages.get("error.notAuthorized")));
 		}
 
-		User chosenUser = User.findById(id);
-		if(chosenUser == null) {
+		User user = User.findById(id);
+		if(user == null) {
 			return badRequest(error.render(Messages.get("error.userNotFound")));
 		}
 
-		return RenderPDF.renderPDFfile(userView.render(chosenUser), new String(User.findById(id).name) + ".pdf");
+		File pdfFile = RenderPDF.renderPDFfile(userView.render(user), user.name+"."+user.surname);
+		if (pdfFile == null)
+			return internalServerError();
+		
+		try {
+			response().setContentType("application/pdf ");
+			return ok(new FileInputStream(pdfFile));
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return internalServerError();
+		}
 	}
 }
