@@ -25,6 +25,7 @@ button.addCompetence = lägg till kompetens
 button.remove = ta bort
 button.hire = anställ
 button.deny = avslå
+button.pdf = ladda ner pdf
 
 
 change = ändra

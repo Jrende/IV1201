@@ -25,10 +25,10 @@ import play.mvc.Security;
 
 
 @Security.Authenticated(Secured.class)
-public class RenderPDF extends Controller {
-	public static Result renderPDFfile(Content content, String filename) {
+public class RenderPDF {
+	public static File renderPDFfile(Content content, String name) {
 		try {
-			File pdfFile = new File(filename);
+			File pdfFile = File.createTempFile(name, "pdf", new File(File.separator + "tmp"));
 			FileOutputStream fileOutputStream = new FileOutputStream(pdfFile);
 			DocumentBuilder documentBuilder = DocumentBuilderFactory
 					.newInstance().newDocumentBuilder();
@@ -40,10 +40,8 @@ public class RenderPDF extends Controller {
 			iTextRenderer.createPDF(fileOutputStream);
 
 			fileOutputStream.close();
-
-			response().setContentType("application/pdf ");
-			
-			return ok(new FileInputStream(pdfFile));
+						
+			return pdfFile;
 
 		} catch (FileNotFoundException e) {
 			System.out.println("FileNotFoundException");
@@ -62,7 +60,7 @@ public class RenderPDF extends Controller {
 			e.printStackTrace();
 		}
 		
-		return internalServerError();
+		return null;
 	}
 }
 
