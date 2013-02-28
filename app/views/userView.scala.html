@@ -2,25 +2,13 @@
 
 @import helper._
     
-@main(Messages("title.userview"), Messages("header.userview"), false) {
+@main(Messages("title.userview"), Messages("header.userview"), true) {
 	<div class="row">
-	  <h2>@chosenUser.name @chosenUser.surname</h2>
-	  <h3>@chosenUser.username</h3>
-	  <h3>@chosenUser.email</h3>
-	  <h3>@chosenUser.ssn</h3>
-	  <h3>@chosenUser.isHired</h3>
-	<table class = "twelve">
-		<thead>
-			<th>@Messages("panel.competenceName")</th>
-			<th>@Messages("panel.competenceYears")</th>
-		</thead>
-		@for(comp <- chosenUser.competenceProfileList) {
-		<tr>
-			<td>@Messages("competence." + comp.competence.competence_id)</td>
-			<td>@comp.years_of_experience</td>
-		</tr>
-		}
-	</table>
+	  <h3>@chosenUser.name @chosenUser.surname</h3>
+	  <h4>@chosenUser.username</h4>
+	  <h4>@chosenUser.email</h4>
+	  <h4>@chosenUser.ssn</h4>
+	@competenceList(chosenUser, false)
 	<form class="block" action="/hireApplicant/@chosenUser.person_id" method="POST">
 		<button class="button large" >@Messages("button.hire")</button>
 	</form>

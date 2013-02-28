@@ -25,6 +25,7 @@ button.addCompetence = add new competence
 button.remove = remove
 button.hire = hire
 button.deny = deny
+button.pdf = download pdf
 
 change = edit
 save = save
