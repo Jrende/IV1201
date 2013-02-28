@@ -18,7 +18,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 /**
- * Class representing a user in the system.
+ * User entity managed by Ebean
  */
 @Entity
 @Table(name = "person")
@@ -65,8 +65,7 @@ public class User extends Model {
 
 	public boolean isHired = false;
 
-	public static Model.Finder<String, User> find = new Model.Finder(
-			String.class, User.class);
+	public static Model.Finder<String, User> find = new Model.Finder(String.class, User.class);
 
 	public User() {
 	}
@@ -93,6 +92,13 @@ public class User extends Model {
 		return find.where().eq("username", username).findUnique();
 	}
 
+	/**
+	 * Retrieve User by id.
+	 * 
+	 * @param id
+	 *            - id of User.
+	 * @return User.
+	 */
 	public static User findById(long id) {
 		return find.where().eq("person_id", id).findUnique();
 	}
@@ -195,12 +201,18 @@ public class User extends Model {
 		return null;
 	}
 
+	/**
+	 * Save new User and encrypt password
+	 */
 	@Override
 	public void save() {
 		password = encrypt(password);
 		super.save();
 	}
 
+	/**
+	 * Update user
+	 */
 	public void update() {
 		super.save();
 	}

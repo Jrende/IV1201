@@ -1,10 +1,5 @@
 package controllers;
 
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Date;
-import java.util.Map;
 
 import play.*;
 import play.mvc.*;
@@ -23,6 +18,7 @@ public class UserController extends Controller {
 	public static class CompetenceProfileForm {
 		public Competence competence;
 		public float yearsOfExperience;
+		
 		/**
 		 * Validate whether the competence exists in database.
 		 * 
@@ -127,21 +123,19 @@ public class UserController extends Controller {
 						controllers.routes.javascript.UserController.usernameAvailable())
 		);
 	}
-/*
-	@Security.Authenticated(Secured.class)
-	public static Result getCompetenceView() {
-		String username = Http.Context.current().request().username();
-		User user = User.findByUsername(username);
-		return ok(applicantView.render(user, form(CompetenceProfileForm.class), form(AvailabilityForm.class)));
-	}*/
 
+	/**
+	 * Add a new Competence to a user
+	 * 
+	 * @return index-page of logged in user
+	 */
 	@Security.Authenticated(Secured.class)
 	public static Result addCompetence() {
 
 		String username = Http.Context.current().request().username();
 		User user = User.findByUsername(username);
 
-		//Adds a custom formatter to convert from string to Competence
+		//Adds a custom formatter to convert from String to Competence
 		Formatters.register(Competence.class, new Formatters.SimpleFormatter<Competence>() {
 			@Override
 			public Competence parse(String input, Locale arg1) throws ParseException {
@@ -170,6 +164,13 @@ public class UserController extends Controller {
 		}
 
 	}
+	
+	/**
+	 * Remove competence with specified id from logged in user.
+	 * 
+	 * @param id
+	 * @return index view of logged in user
+	 */
 	@Security.Authenticated(Secured.class)
 	public static Result removeCompetenceProfile(int id) {
 		String username = Http.Context.current().request().username();
