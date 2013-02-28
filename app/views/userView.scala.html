@@ -1,0 +1,22 @@
+@(chosenUser: User)
+
+@import helper._
+    
+@main(Messages("title.userview"), Messages("header.userview"), true) {
+	<div class="row">
+	  <h3>@chosenUser.name @chosenUser.surname</h3>
+	  <h4>@chosenUser.username</h4>
+	  <h4>@chosenUser.email</h4>
+	  <h4>@chosenUser.ssn</h4>
+	@competenceList(chosenUser, false)
+	<form class="block" action="/hireApplicant/@chosenUser.person_id" method="POST">
+		<button class="button large" >@Messages("button.hire")</button>
+	</form>
+	<form class="block" action="/denyApplicant/@chosenUser.person_id" method="POST">
+		<button class="button large">@Messages("button.deny")</button>
+	</form>
+	<form class="block" action="/printApplicantPDF/@chosenUser.person_id" method="GET">
+		<button class="button large">@Messages("button.pdf")</button>
+	</form>
+	</div>
+}

@@ -5,8 +5,19 @@
 # Home page
 GET     /                           controllers.Index.index()
 
-GET     /competence                 controllers.UserController.getCompetenceView()
 POST    /competence                 controllers.UserController.addCompetence()
+
+POST	/removecompetence/:id		controllers.UserController.removeCompetenceProfile(id: Int)
+
+GET     /user/:id			        controllers.RecruiterController.getDetailedUserView(id: Int)
+
+POST	/hireApplicant/:id			controllers.RecruiterController.hireApplicant(id: Int)
+POST	/denyApplicant/:id			controllers.RecruiterController.denyApplicant(id: Int)
+GET 	/printApplicantPDF/:id		controllers.RecruiterController.printApplicantPDF(id: Int)
+
+
+POST    /availability               controllers.UserAvailabilityController.addAvailability()
+POST	/removeavailability/:id		controllers.UserAvailabilityController.deleteAvailability(id: Long)
 
 GET     /login                      controllers.UserController.login()
 POST    /login                      controllers.UserController.authenticate()

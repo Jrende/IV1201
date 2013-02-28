@@ -13,13 +13,17 @@ import play.data.validation.Constraints;
 
 import play.db.ebean.Model;
 
+
+/**
+ * CompenteceProfile entity managed by Ebean
+ */
 @Entity
 @Table(name = "competenceProfile")
 public class CompetenceProfile extends Model {
 	
 	@Id
 	@Formats.NonEmpty
-	public long  competence_profile_id;
+	public long competence_profile_id;
 	
 	@Formats.NonEmpty
 	@Constraints.Required
@@ -37,7 +41,18 @@ public class CompetenceProfile extends Model {
 	@Constraints.Required
 	public float years_of_experience;
 
+    /**
+     * Generic query helper for entity CompetenceProfile
+     */
+	public static Model.Finder<String, CompetenceProfile> find = new Model.Finder(String.class, CompetenceProfile.class);
 	
+    /**
+     * Generic query helper for entity CompetenceProfile with id Long
+     */
+	public static CompetenceProfile findById(long id) {
+		return find.where().eq("competence_profile_id", id).findUnique();
+	}
+
 	
 	public String validate() {
 		return null;

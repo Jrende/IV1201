@@ -1,0 +1,39 @@
+@(currentUser: User)
+
+@import helper._
+@import scala._
+
+@main(Messages("title.competence"), Messages("header.welcome") + " " + currentUser.name + "!", true) {
+	<div class="row">
+		<table class="twelve">
+			<thead>
+				<th>@Messages("userlist.users")</th>
+			</thead>
+			@for(user <- User.getAllApplicants()) {
+				<tr>
+				<td>
+					<div class="twelve">
+						<a href="/user/@user.person_id">
+						  @user.surname @user.name
+						</a>
+						<div>
+							<table class = "six minimal">
+								<thead>
+									<th>@Messages("panel.competenceName")</th>
+									<th>@Messages("panel.competenceYears")</th>
+								</thead>
+								@for(comp <- user.competenceProfileList) {
+								<tr>
+									<td>@Messages("competence." + comp.competence.competence_id)</td>
+									<td>@comp.years_of_experience</td>
+								</tr>
+								}
+							</table>
+						</div>
+					</div>
+				</td>
+			</tr>
+			}
+		</table>
+	</div>
+}

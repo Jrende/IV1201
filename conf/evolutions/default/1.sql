@@ -3,8 +3,16 @@
 
 # --- !Ups
 
+create table availability (
+  availability_id           bigint not null,
+  person_id                 bigint,
+  from_date                 timestamp,
+  to_date                   timestamp,
+  constraint pk_availability primary key (availability_id))
+;
+
 create table competence (
-  competence_id             integer not null,
+  competence_id             bigint not null,
   name                      varchar(255),
   constraint pk_competence primary key (competence_id))
 ;
@@ -12,7 +20,7 @@ create table competence (
 create table competenceProfile (
   competence_profile_id     bigint not null,
   person                    bigint,
-  competence_competence_id  integer,
+  competence_competence_id  bigint,
   years_of_experience       float,
   constraint pk_competenceProfile primary key (competence_profile_id))
 ;
@@ -26,9 +34,12 @@ create table person (
   role                      integer,
   password                  varchar(255),
   ssn                       varchar(255),
+  is_hired                  boolean,
   constraint ck_person_role check (role in (0,1)),
   constraint pk_person primary key (person_id))
 ;
+
+create sequence availability_seq;
 
 create sequence competence_seq;
 
@@ -36,16 +47,20 @@ create sequence competenceProfile_seq;
 
 create sequence person_seq;
 
-alter table competenceProfile add constraint fk_competenceProfile_person_1 foreign key (person) references person (person_id) on delete restrict on update restrict;
-create index ix_competenceProfile_person_1 on competenceProfile (person);
-alter table competenceProfile add constraint fk_competenceProfile_competenc_2 foreign key (competence_competence_id) references competence (competence_id) on delete restrict on update restrict;
-create index ix_competenceProfile_competenc_2 on competenceProfile (competence_competence_id);
+alter table availability add constraint fk_availability_person_id_1 foreign key (person_id) references person (person_id) on delete restrict on update restrict;
+create index ix_availability_person_id_1 on availability (person_id);
+alter table competenceProfile add constraint fk_competenceProfile_person_2 foreign key (person) references person (person_id) on delete restrict on update restrict;
+create index ix_competenceProfile_person_2 on competenceProfile (person);
+alter table competenceProfile add constraint fk_competenceProfile_competenc_3 foreign key (competence_competence_id) references competence (competence_id) on delete restrict on update restrict;
+create index ix_competenceProfile_competenc_3 on competenceProfile (competence_competence_id);
 
 
 
 # --- !Downs
 
 SET REFERENTIAL_INTEGRITY FALSE;
+
+drop table if exists availability;
 
 drop table if exists competence;
 
@@ -54,6 +69,8 @@ drop table if exists competenceProfile;
 drop table if exists person;
 
 SET REFERENTIAL_INTEGRITY TRUE;
+
+drop sequence if exists availability_seq;
 
 drop sequence if exists competence_seq;
 

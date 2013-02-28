@@ -1,14 +1,11 @@
 package controllers;
 
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Map;
 
 import play.*;
 import play.mvc.*;
 import play.data.*;
 import play.data.format.*;
+import play.i18n.*;
 
 import java.util.Locale;
 import java.text.ParseException;
@@ -21,15 +18,21 @@ public class UserController extends Controller {
 	public static class CompetenceProfileForm {
 		public Competence competence;
 		public float yearsOfExperience;
+		
 		/**
 		 * Validate whether the competence exists in database.
 		 * 
 		 * @return - null on success, else error message.
 		 */
 		public String validate() {
+			if(competence == null) {
+				return "Please select a competence!";
+			}	
 			return null;
 		}
 	}
+	
+
 
 	/**
 	 * Authentication
@@ -90,9 +93,6 @@ public class UserController extends Controller {
 	public static Result newUser() {
 		Form<User> userForm = form(User.class).bindFromRequest();
 		if(userForm.hasErrors()) {
-			
-			System.out.println("Error :" + userForm.errorsAsJson());
-			
 			return badRequest(register.render(userForm));
 		} else {
 			userForm.get().save();
@@ -101,7 +101,7 @@ public class UserController extends Controller {
 	}
 	
 	/**
-	 * Is username free?
+	 * Check if username is available
 	 */
 	public static Result usernameAvailable(String username) {
 		if (User.usernameAvailable(username))
@@ -124,50 +124,68 @@ public class UserController extends Controller {
 		);
 	}
 
-	@Security.Authenticated(Secured.class)
-	public static Result getCompetenceView() {
-		String username = Http.Context.current().request().username();
-		User user = User.findByUsername(username);
-		return ok(competenceView.render(user, form(CompetenceProfileForm.class)));
-	}
-
+	/**
+	 * Add a new Competence to a user
+	 * 
+	 * @return index-page of logged in user
+	 */
 	@Security.Authenticated(Secured.class)
 	public static Result addCompetence() {
 
 		String username = Http.Context.current().request().username();
 		User user = User.findByUsername(username);
 
-		//Adds a custom formatter to convert from string to Competence
+		//Adds a custom formatter to convert from String to Competence
 		Formatters.register(Competence.class, new Formatters.SimpleFormatter<Competence>() {
 			@Override
 			public Competence parse(String input, Locale arg1) throws ParseException {
-				System.out.println("Parsing!");
 				Competence comp = Competence.findById(Integer.parseInt(input));
 				return comp;
 			}
 			
 			@Override
 			public String print(Competence comp, Locale arg1) {
-				System.out.println("Printing!");
-				return Integer.toString(comp.competence_id);
+				return Long.toString(comp.competence_id);
 			}
 		});
 
 		Form<CompetenceProfileForm> compForm = form(CompetenceProfileForm.class).bindFromRequest();
 
 		if (compForm.hasErrors()) {
-			System.out.println("Compform has errors");
-			return badRequest(competenceView.render(user, form(CompetenceProfileForm.class)));
+			return badRequest(applicantView.render(user, form(CompetenceProfileForm.class), form(UserAvailabilityController.AvailabilityForm.class)));
 		} else {
-			System.out.println("Compform was a success");
 			CompetenceProfile p = new CompetenceProfile();
 			p.person = user;
 			p.competence = compForm.get().competence;
 			p.years_of_experience = compForm.get().yearsOfExperience;
-			System.out.println(compForm.get().competence + ", " + compForm.get().yearsOfExperience);
 			user.competenceProfileList.add(p);
 			user.update();
 			return redirect(routes.Index.index());
 		}
+
 	}
+	
+	/**
+	 * Remove competence with specified id from logged in user.
+	 * 
+	 * @param id
+	 * @return index view of logged in user
+	 */
+	@Security.Authenticated(Secured.class)
+	public static Result removeCompetenceProfile(int id) {
+		String username = Http.Context.current().request().username();
+		User user = User.findByUsername(username);
+		CompetenceProfile comp = CompetenceProfile.findById(id);
+		if(comp == null) {
+			return badRequest(error.render(Messages.get("error.competenceProfileNotFound")));
+		}
+		if(!comp.person.person_id.equals(user.person_id)) {
+			return badRequest(error.render(Messages.get("error.competenceProfileNotYours")));
+		}
+		comp.delete();
+		return redirect(routes.Index.index());
+	}
+	
+
+	
 }

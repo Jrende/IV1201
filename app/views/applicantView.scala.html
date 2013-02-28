@@ -1,11 +1,18 @@
-@(currentUser: User, competenceForm: Form[UserController.CompetenceProfileForm])
+@(currentUser: User, competenceForm: Form[UserController.CompetenceProfileForm], availabilityForm: Form[UserAvailabilityController.AvailabilityForm])
 
 @import helper._
 @import scala._
 
 @main(Messages("title.competence"), Messages("header.welcome")+ " " + currentUser.name + "!", true) {
 
-	<h3>@Messages("list.competences")</h3>
+<h3>
+	@if(currentUser.isHired) {
+		@Messages("user.isHired") 
+	} else {
+		@Messages("user.notHiredYet")
+	}
+</h3>
+	<h4>@Messages("list.competences")</h4>
 
 	@helper.form(action = routes.UserController.addCompetence) {
 	<div class="four column">
@@ -36,5 +43,7 @@
             }
    </div>
 	
-	@competenceList(currentUser, false)
+	@competenceList(currentUser, true)
+	@editAvailability(currentUser, availabilityForm)
+	@availabilityList(currentUser)
 }

@@ -1,0 +1,22 @@
+@(currentUser: User)
+
+@import helper._
+
+	<div class="row">
+	<table class = "twelve">
+		<thead>
+			<th>@Messages("availability")</th>
+			<th>@Messages("change")</th>
+		</thead>
+		@for(availability <- currentUser.availabilityList) {
+		<tr>
+			<td>@availability.toString</td>
+			<td>
+				<form action="./removeavailability/@availability.availability_id" method="POST">
+					<button type="submit" class="small alert button">@Messages("button.remove")</button>
+				</form>
+			</td>
+		</tr>
+		}
+	</table>
+	</div>

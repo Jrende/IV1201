@@ -7,11 +7,22 @@
 		<thead>
 			<th>@Messages("panel.competenceName")</th>
 			<th>@Messages("panel.competenceYears")</th>
+			@if(showAddButton){
+    			<th>@Messages("change")</th>		
+    		}
+			
 		</thead>
 		@for(comp <- currentUser.competenceProfileList) {
 		<tr>
 			<td>@Messages("competence." + comp.competence.competence_id)</td>
 			<td>@comp.years_of_experience</td>
+			@if(showAddButton){
+			<td>
+				<form action="./removecompetence/@comp.competence_profile_id" method="POST">
+					<button type="submit" class="small alert button">@Messages("button.remove")</button>
+				</form>
+			</td>
+			}
 		</tr>
 		}
 	</table>

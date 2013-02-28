@@ -18,7 +18,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 /**
- * Class representing a user in the system.
+ * User entity managed by Ebean
  */
 @Entity
 @Table(name = "person")
@@ -58,9 +58,14 @@ public class User extends Model {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
 	public List<CompetenceProfile> competenceProfileList;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "person_id")
+	public List<Availability> availabilityList;
 
-	public static Model.Finder<String, User> find = new Model.Finder(
-			String.class, User.class);
+
+	public boolean isHired = false;
+
+	public static Model.Finder<String, User> find = new Model.Finder(String.class, User.class);
 
 	public User() {
 	}
@@ -88,6 +93,17 @@ public class User extends Model {
 	}
 
 	/**
+	 * Retrieve User by id.
+	 * 
+	 * @param id
+	 *            - id of User.
+	 * @return User.
+	 */
+	public static User findById(long id) {
+		return find.where().eq("person_id", id).findUnique();
+	}
+
+	/**
 	 * Retrieve User by username and password pair. Used to authenticates a
 	 * User.
 	 * 
@@ -109,6 +125,16 @@ public class User extends Model {
 	 */
 	public static List<User> getAll() {
 		return find.all();
+	}
+
+
+	/**
+	 * Return a list of all Users with the applicant role.
+	 * 
+	 * @return List of all applicants.
+	 */
+	public static List<User> getAllApplicants() {
+		return find.where().eq("role", Role.Applicant.ordinal()).findList();
 	}
 
 	/**
@@ -175,12 +201,18 @@ public class User extends Model {
 		return null;
 	}
 
+	/**
+	 * Save new User and encrypt password
+	 */
 	@Override
 	public void save() {
 		password = encrypt(password);
 		super.save();
 	}
 
+	/**
+	 * Update user
+	 */
 	public void update() {
 		super.save();
 	}
