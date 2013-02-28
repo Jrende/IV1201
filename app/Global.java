@@ -8,11 +8,7 @@ import com.avaje.ebean.*;
 
 import models.*;
 
-/**
- * 
- * @author mao
- *
- */
+
 public class Global extends GlobalSettings {
     
 	/**

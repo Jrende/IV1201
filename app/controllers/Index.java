@@ -15,8 +15,9 @@ import views.html.*;
  */
 @Security.Authenticated(Secured.class)
 public class Index extends Controller {
+	
 	/**
-	 * Returns index page for HTTP.
+	 * Returns either admin view or user view, based on role of User.
 	 * 
 	 * @return - Rendered index page as response.
 	 */
@@ -27,7 +28,7 @@ public class Index extends Controller {
 			case Applicant:
 				return ok(applicantView.render(user, form(UserController.CompetenceProfileForm.class), form(UserAvailabilityController.AvailabilityForm.class)));
 			case Recruiter:
-				return ok(recruiterView.render(user, form(UserController.CompetenceProfileForm.class)));
+				return ok(recruiterView.render(user));
 			default:
 				return internalServerError(Messages.get("title.error"));
 		}
