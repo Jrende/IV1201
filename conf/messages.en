@@ -66,3 +66,5 @@ constraints.required = Required
 
 user.isHired = You''ve been hired!
 user.notHiredYet = You''ven''t been hired yet
+
+password.length = password must be 6 characters or more

@@ -68,3 +68,5 @@ constraints.required = Obligatorisk
 
 user.isHired = Du har blivit anställd!
 user.notHiredYet = Du har inte blivit anställd än
+
+password.length = lösenordet måste vara minst 6 tecken långt

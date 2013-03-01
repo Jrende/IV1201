@@ -12,7 +12,9 @@ action = routes.UserController.newUser(), 'id -> "registerForm") {
 				@helper.inputText(
 					registerForm("username"),
 					'_default -> Messages("choose.username"),
-					'_label -> Messages("plain.username")
+					'_label -> Messages("plain.username"),
+					Symbol("required") -> "required",
+					'_showConstraints -> false
 				)
 			</div>
 			<div class="second" id="usernameOk">
@@ -24,7 +26,12 @@ action = routes.UserController.newUser(), 'id -> "registerForm") {
 				@helper.inputPassword(
 					registerForm("password"),
 					'_default -> Messages("choose.password"),
-					'_label -> Messages("plain.password")
+					'_label -> Messages("plain.password"),
+					Symbol("required") -> "required",
+					'_showConstraints -> false,
+					'placeholder -> Messages("password.length"),
+					Symbol("pattern") -> ".{6,}",
+					Symbol("title") -> Messages("password.length")
 				)
 			</div>
 			<div class="second" id="passwordOk" style="background-image: url(
@@ -37,7 +44,11 @@ action = routes.UserController.newUser(), 'id -> "registerForm") {
 				@helper.inputPassword(
 					registerForm("confirmPassword"),
 					'_default -> Messages("choose.confirmPassword"),
-					'_label -> Messages("plain.confirmPassword")
+					'_label -> Messages("plain.confirmPassword"),
+					Symbol("required") -> "required",
+					'_showConstraints -> false,
+					Symbol("pattern") -> ".{6,}",
+					Symbol("title") -> Messages("password.length")
 				)
 			</div>
 			<div class="second" id="confirmPasswordOk" style="background-image: url(
@@ -51,7 +62,10 @@ action = routes.UserController.newUser(), 'id -> "registerForm") {
 				@helper.inputText(
 					registerForm("email"),
 					'_default -> Messages("choose.email"),
-					'_label -> Messages("plain.email")
+					'_label -> Messages("plain.email"),
+					Symbol("required") -> "required",
+					'_showConstraints -> false,
+					'type -> "email"
 				)
 			</div>
 			<div class="second" id="emailOk" style="background-image: url(
@@ -65,7 +79,9 @@ action = routes.UserController.newUser(), 'id -> "registerForm") {
 		        @helper.inputText(
 					registerForm("name"),
 					'_default -> Messages("choose.name"),
-					'_label -> Messages("plain.name")
+					'_label -> Messages("plain.name"),
+					Symbol("required") -> "required",
+					'_showConstraints -> false
 				)
 			</div>
 			<div class="second" id="nameOk" style="background-image: url(
@@ -78,7 +94,9 @@ action = routes.UserController.newUser(), 'id -> "registerForm") {
     		    @helper.inputText(
 					registerForm("surname"),
 					'_default -> Messages("choose.surname"),
-					'_label -> Messages("plain.surname")
+					'_label -> Messages("plain.surname"),
+					Symbol("required") -> "required",
+					'_showConstraints -> false
 				)
 			</div>
 			<div class="second" id="surnameOk" style="background-image: url(
@@ -91,7 +109,9 @@ action = routes.UserController.newUser(), 'id -> "registerForm") {
         		@helper.inputText(
 					registerForm("ssn"),
 					'_default -> Messages("choose.ssn"),
-					'_label -> Messages("plain.ssn")
+					'_label -> Messages("plain.ssn"),
+					'_showConstraints -> false,
+					Symbol("required") -> "required"
 				)
 			</div>
 			<div class="second" id="ssnOk" style="background-image: url(

@@ -37,6 +37,23 @@ h1:first-letter, h2:first-letter, h3:first-letter, h4:first-letter, h5:first-let
 	margin-top:25px;
 }
 
+::-webkit-input-placeholder { 
+	color: #aaa !important;
+	font-style: italic;
+}
+ :-moz-placeholder { /* Firefox 18- */ 
+ 	color: #aaa !important;  
+ 	font-style: italic;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+	color: #aaa !important;  
+	font-style: italic;
+ }
+ :-ms-input-placeholder {   
+ 	color: #aaa;
+ 	font-style: italic;  
+ }
+
 
 
 /* -----------------------------------------
@@ -49,7 +66,17 @@ h1:first-letter, h2:first-letter, h3:first-letter, h4:first-letter, h5:first-let
 
 
 /* -----------------------------------------
-   Page Name 2
+   Page Name admin
 ----------------------------------------- */
 
+.competencelist > UL {
+	list-style:none;
+	list-styletype:none;
+	
+}
+
+.competencelist LI {
+	float: left;
+	margin: 3px;
+}
 
