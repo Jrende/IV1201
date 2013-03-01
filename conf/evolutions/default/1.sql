@@ -4,21 +4,21 @@
 # --- !Ups
 
 create table availability (
-  availability_id           bigint not null,
+  availability_id           bigint auto_increment not null,
   person_id                 bigint,
-  from_date                 timestamp,
-  to_date                   timestamp,
+  from_date                 datetime,
+  to_date                   datetime,
   constraint pk_availability primary key (availability_id))
 ;
 
 create table competence (
-  competence_id             bigint not null,
+  competence_id             bigint auto_increment not null,
   name                      varchar(255),
   constraint pk_competence primary key (competence_id))
 ;
 
 create table competenceProfile (
-  competence_profile_id     bigint not null,
+  competence_profile_id     bigint auto_increment not null,
   person                    bigint,
   competence_competence_id  bigint,
   years_of_experience       float,
@@ -26,7 +26,7 @@ create table competenceProfile (
 ;
 
 create table person (
-  person_id                 bigint not null,
+  person_id                 bigint auto_increment not null,
   username                  varchar(255),
   email                     varchar(255),
   surname                   varchar(255),
@@ -34,18 +34,10 @@ create table person (
   role                      integer,
   password                  varchar(255),
   ssn                       varchar(255),
-  is_hired                  boolean,
+  is_hired                  tinyint(1) default 0,
   constraint ck_person_role check (role in (0,1)),
   constraint pk_person primary key (person_id))
 ;
-
-create sequence availability_seq;
-
-create sequence competence_seq;
-
-create sequence competenceProfile_seq;
-
-create sequence person_seq;
 
 alter table availability add constraint fk_availability_person_id_1 foreign key (person_id) references person (person_id) on delete restrict on update restrict;
 create index ix_availability_person_id_1 on availability (person_id);
@@ -58,23 +50,15 @@ create index ix_competenceProfile_competenc_3 on competenceProfile (competence_c
 
 # --- !Downs
 
-SET REFERENTIAL_INTEGRITY FALSE;
+SET FOREIGN_KEY_CHECKS=0;
 
-drop table if exists availability;
+drop table availability;
 
-drop table if exists competence;
+drop table competence;
 
-drop table if exists competenceProfile;
+drop table competenceProfile;
 
-drop table if exists person;
+drop table person;
 
-SET REFERENTIAL_INTEGRITY TRUE;
-
-drop sequence if exists availability_seq;
-
-drop sequence if exists competence_seq;
-
-drop sequence if exists competenceProfile_seq;
-
-drop sequence if exists person_seq;
+SET FOREIGN_KEY_CHECKS=1;
 
