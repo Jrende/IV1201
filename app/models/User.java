@@ -54,7 +54,7 @@ public class User extends Model {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
 	public List<CompetenceProfile> competenceProfileList;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "person_id")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
 	public List<Availability> availabilityList;
 
 

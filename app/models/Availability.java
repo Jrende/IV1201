@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Column;
 
 import play.data.format.Formats;
 import play.data.validation.Constraints;
@@ -29,7 +30,8 @@ public class Availability extends Model{
 	@Constraints.Required
 	@ManyToOne
 	@JoinColumn(name="person_id")
-	public User person_id;  
+	@Column(name="person_id")
+	public User person;  
 	
 	@Formats.NonEmpty
     @Formats.DateTime(pattern="yyyy-MM-dd")
