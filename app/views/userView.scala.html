@@ -9,6 +9,7 @@
 	  <h4>@chosenUser.email</h4>
 	  <h4>@chosenUser.ssn</h4>
 	@competenceList(chosenUser, false)
+	@availabilityList(chosenUser, false)
 	<form class="block" action="/hireApplicant/@chosenUser.person_id" method="POST">
 		<button class="button large" >@Messages("button.hire")</button>
 	</form>

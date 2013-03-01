@@ -46,6 +46,12 @@ public class Availability extends Model{
      */
     public static Model.Finder<Long, Availability> find = new Model.Finder(Long.class, Availability.class);
     
+    /**
+     * Find Availability by id
+     * 
+     * @param id
+     * @return Availability
+     */
 	public static Availability findById(Long id) {
 		return find.where().eq("availability_id", id).findUnique();
 	}

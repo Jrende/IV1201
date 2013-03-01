@@ -1,4 +1,4 @@
-@(currentUser: User)
+@(currentUser: User, showRemove: Boolean)
 
 @import helper._
 
@@ -6,16 +6,20 @@
 	<table class = "twelve">
 		<thead>
 			<th>@Messages("availability")</th>
+			@if(showRemove){
 			<th>@Messages("change")</th>
+			}
 		</thead>
 		@for(availability <- currentUser.availabilityList) {
 		<tr>
 			<td>@availability.toString</td>
+			@if(showRemove){
 			<td>
 				<form action="./removeavailability/@availability.availability_id" method="POST">
 					<button type="submit" class="small alert button">@Messages("button.remove")</button>
 				</form>
 			</td>
+			}
 		</tr>
 		}
 	</table>

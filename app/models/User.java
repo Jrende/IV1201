@@ -65,6 +65,9 @@ public class User extends Model {
 
 	public boolean isHired = false;
 
+    /**
+     * Generic query helper for entity Competence with id Long
+     */
 	public static Model.Finder<String, User> find = new Model.Finder(String.class, User.class);
 
 	public User() {
