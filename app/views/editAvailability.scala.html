@@ -4,18 +4,17 @@
 	
 	<div class="row">
  	@helper.form(action = routes.UserAvailabilityController.addAvailability) {
+ 		@if(availabilityForm.hasErrors) { 
+        	<p class="error">
+        		@availabilityForm.errors
+        	</p>
+        }
  		<div class="four column">
-		@helper.inputText(availabilityForm("from_date"), '_label -> Messages("from"))
+		@helper.inputDate(availabilityForm("from_date"), '_label -> Messages("from"), 'placeholder -> "YYYY-MM-DD")
 		</div>
 		<div class="four column">
-		@helper.inputText(availabilityForm("to_date"), '_label -> Messages("to"))
+		@helper.inputDate(availabilityForm("to_date"), '_label -> Messages("to"), 'placeholder -> "YYYY-MM-DD")
 		</div>
-		@if(availabilityForm.hasGlobalErrors) { 
-        <p class="error">
-        	@availabilityForm.globalError.message
-        </p>
-            }
-        
-        	<button class="small button compButton" type="submit">@Messages("save")</button>
+		<button class="small button compButton" type="submit">@Messages("save")</button>
 	</div>
 	}

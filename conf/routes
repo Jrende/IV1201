@@ -5,9 +5,9 @@
 # Home page
 GET     /                           controllers.Index.index()
 
-POST    /competence                 controllers.UserController.addCompetence()
+POST    /competence                 controllers.UserCompetenceController.addCompetence()
 
-POST	/removecompetence/:id		controllers.UserController.removeCompetenceProfile(id: Int)
+POST	/removecompetence/:id		controllers.UserCompetenceController.removeCompetenceProfile(id: Int)
 
 GET     /user/:id			        controllers.RecruiterController.getDetailedUserView(id: Int)
 

@@ -26,7 +26,7 @@ public class Index extends Controller {
 		User user = User.findByUsername(username);
 		switch(user.role) {
 			case Applicant:
-				return ok(applicantView.render(user, form(UserController.CompetenceProfileForm.class), form(UserAvailabilityController.AvailabilityForm.class)));
+				return ok(applicantView.render(user, form(UserCompetenceController.CompetenceProfileForm.class), form(UserAvailabilityController.AvailabilityForm.class)));
 			case Recruiter:
 				return ok(recruiterView.render(user));
 			default:

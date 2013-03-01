@@ -33,10 +33,12 @@ public class Availability extends Model{
 	
 	@Formats.NonEmpty
     @Formats.DateTime(pattern="yyyy-MM-dd")
+	@Constraints.Required()
     public Date from_date;
     
 	@Formats.NonEmpty
     @Formats.DateTime(pattern="yyyy-MM-dd")
+	@Constraints.Required()
     public Date to_date;
     
     /**
@@ -49,12 +51,17 @@ public class Availability extends Model{
 	}
 	
 	/**
-	 * Validate Availability form.
+	 * Validate Availability.
 	 * 
 	 * @return null if validation is successful, else error message is returned.
 	 */
-	public String validate() {
-		return null;
+	public static String validate(Date to_date, Date from_date) {
+		if(from_date == null)
+			return "from date fail";
+		else if(to_date == null)
+			return "to date fail";
+		else
+			return null;
 	}
 	
 	public String toString() {

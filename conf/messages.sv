@@ -14,6 +14,7 @@ error.competenceProfileNotFound = den valda kompetensprofilen hittades inte
 error.competenceProfileNotYours = du kan inte ta bort kompetensprofiler du inte äger
 error.notAuthorized = endast rekryterare kan besöka denna sida
 error.userNotFound = den valda användaren hittades inte
+error.dateFormat = fel datumformat angivet
 
 userlist.users = Användare
 
