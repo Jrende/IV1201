@@ -1,4 +1,4 @@
-@(currentUser: User, competenceForm: Form[UserController.CompetenceProfileForm], availabilityForm: Form[UserAvailabilityController.AvailabilityForm])
+@(currentUser: User, competenceForm: Form[UserCompetenceController.CompetenceProfileForm], availabilityForm: Form[UserAvailabilityController.AvailabilityForm])
 
 @import helper._
 @import scala._
@@ -14,7 +14,7 @@
 </h3>
 	<h4>@Messages("list.competences")</h4>
 
-	@helper.form(action = routes.UserController.addCompetence) {
+	@helper.form(action = routes.UserCompetenceController.addCompetence) {
 	<div class="four column">
 		@select(
 			competenceForm("competence"),
@@ -45,5 +45,5 @@
 	
 	@competenceList(currentUser, true)
 	@editAvailability(currentUser, availabilityForm)
-	@availabilityList(currentUser)
+	@availabilityList(currentUser, true)
 }

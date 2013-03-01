@@ -1,5 +1,4 @@
-@(
-registerForm: Form[User]),
+@(registerForm: Form[User])
 
 @import controllers.routes.javascript._
 
@@ -7,14 +6,13 @@ registerForm: Form[User]),
 Messages("title.register"), Messages("header.register"), false) {
 	<div class="eight columns offset-by-two">
   	@helper.form(
-action = routes.UserController.newUser(), 'id -> "registerForm") {,
-
+action = routes.UserController.newUser(), 'id -> "registerForm") {
 		<div class="wrapper">
 			<div class="first">
 				@helper.inputText(
-					registerForm( "username"),
-					'_default -> Messages( "choose.username"),
-					'_label -> Messages( "plain.username")
+					registerForm("username"),
+					'_default -> Messages("choose.username"),
+					'_label -> Messages("plain.username")
 				)
 			</div>
 			<div class="second" id="usernameOk">

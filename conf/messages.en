@@ -11,9 +11,11 @@ title.competence = edit competences
 title.error = an error occured
 
 error.competenceProfileNotFound = competence profile not found
-error.competenceProfileNotYours = you can't removed competence profiles not belonging to you
+error.competenceProfileNotYours = you can''t removed competence profiles not belonging to you
 error.notAuthorized = only recruiters can visit this page
-error.userNotFound = the selected user wasn't found
+
+error.dateFormat = wrong format on specified date
+error.userNotFound = the selected user wasn''t found
 
 userlist.users = Users
 
@@ -62,5 +64,5 @@ competence.2 = carousel driving
 
 constraints.required = Required
 
-user.isHired = You've been hired!
-user.notHiredYet = You'ven't been hired yet
+user.isHired = You''ve been hired!
+user.notHiredYet = You''ven''t been hired yet
