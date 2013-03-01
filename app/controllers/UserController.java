@@ -4,15 +4,13 @@ package controllers;
 import play.*;
 import play.mvc.*;
 import play.data.*;
-import play.data.format.*;
-import play.i18n.*;
-
-import java.util.Locale;
-import java.text.ParseException;
 
 import models.*;
 import views.html.*;
 
+/**
+ * Manages a database of users
+ */
 public class UserController extends Controller {
 
 	/**
@@ -36,7 +34,8 @@ public class UserController extends Controller {
 	}
 
 	/**
-	 * Renders the login view
+	 * 
+	 * @return login-view
 	 */
 	public static Result login() {
 		return ok(login.render(form(Login.class)));
@@ -44,6 +43,8 @@ public class UserController extends Controller {
 
 	/**
 	 * Authenticates user and creates a session cookie.
+	 *
+	 * @return index-view on success, login-view on error
 	 */
 	public static Result authenticate() {
 		Form<Login> loginForm = form(Login.class).bindFromRequest();
@@ -56,11 +57,12 @@ public class UserController extends Controller {
 	}
 
 	/**
-	 * Logs out and clears cookie
+	 * Logout user, clear session cookie
+	 * 
+	 * @return login-view
 	 */
 	public static Result logout() {
 		session().clear();
-		flash("success", "You've been logged out");
 		return redirect(routes.UserController.login());
 	}
 
@@ -74,7 +76,9 @@ public class UserController extends Controller {
 	}
 
 	/**
-	 *	Creates and persists a new user.
+	 * 
+	 * 
+	 * @return login-view on success, redirects back to register-view on error
 	 */
 	public static Result newUser() {
 		Form<User> userForm = form(User.class).bindFromRequest();
@@ -87,19 +91,22 @@ public class UserController extends Controller {
 	}
 	
 	/**
-	 * Check if username is available
+	 * Checks if username is available
+	 * 
+	 * @param username
+	 * @return true if available
 	 */
 	public static Result usernameAvailable(String username) {
-		if (User.usernameAvailable(username))
+		if (User.usernameAvailable(username)) {
 			return ok("true");
-		
+		}
 		return ok("false");
 	}
 	
 	/**
-	 * Setup rotes for javascript calls.
+	 * Setup routes for javascript calls.
 	 * 
-	 * @return
+	 * @return jsroutes
 	 */
 	public static Result javascriptRoutes() {
 		response().setContentType("text/javascript");

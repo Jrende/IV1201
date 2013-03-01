@@ -53,7 +53,7 @@ public class UserAvailabilityController extends Controller {
 		}
 		else {
 			Availability a = new Availability();
-			a.person_id = user;
+			a.person = user;
 			a.from_date = compForm.get().from_date;
 			a.to_date = compForm.get().to_date;
 			user.availabilityList.add(a);

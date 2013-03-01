@@ -1,16 +1,11 @@
 package models;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.*;
-import javax.persistence.CascadeType;
 
 import play.data.format.Formats;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
+import util.Base64;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -59,7 +54,7 @@ public class User extends Model {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
 	public List<CompetenceProfile> competenceProfileList;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "person_id")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
 	public List<Availability> availabilityList;
 
 

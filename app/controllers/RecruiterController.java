@@ -8,6 +8,7 @@ import play.mvc.*;
 import play.i18n.*;
 
 import models.*;
+import util.RenderPDF;
 import views.html.*;
 
 /**

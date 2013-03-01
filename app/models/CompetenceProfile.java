@@ -7,6 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Column;
 
 import play.data.format.Formats;
 import play.data.validation.Constraints;
@@ -18,7 +19,7 @@ import play.db.ebean.Model;
  * CompenteceProfile entity managed by Ebean
  */
 @Entity
-@Table(name = "competenceProfile")
+@Table(name = "competence_profile")
 public class CompetenceProfile extends Model {
 	
 	@Id
@@ -29,12 +30,14 @@ public class CompetenceProfile extends Model {
 	@Constraints.Required
 	@ManyToOne
 	@JoinColumn(name="person")
+	@Column(name="person_id")
 	public User person;
 	
 	
 	@Formats.NonEmpty
 	@Constraints.Required
 	@OneToOne
+	@Column(name="competence_id")
 	public Competence competence;
 	
 	@Formats.NonEmpty
