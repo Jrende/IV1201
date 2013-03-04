@@ -3,8 +3,8 @@
 @main(Messages("title.login"), Messages("header.login"), false) {
 	<div class="four colums offset-by-four">
 	@helper.form(action = routes.UserController.authenticate) {
-		@helper.inputText(form("username"))
-		@helper.inputPassword(form("password"))
+		@helper.inputText(form("username"), '_label -> Messages("plain.username"))
+		@helper.inputPassword(form("password"), '_label -> Messages("plain.password"))
 		@if(form.hasGlobalErrors) { 
         <p class="error">
         	@form.globalError.message

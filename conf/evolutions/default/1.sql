@@ -17,12 +17,12 @@ create table competence (
   constraint pk_competence primary key (competence_id))
 ;
 
-create table competenceProfile (
+create table competence_profile (
   competence_profile_id     bigint not null,
   person                    bigint,
   competence_competence_id  bigint,
   years_of_experience       float,
-  constraint pk_competenceProfile primary key (competence_profile_id))
+  constraint pk_competence_profile primary key (competence_profile_id))
 ;
 
 create table person (
@@ -43,16 +43,16 @@ create sequence availability_seq;
 
 create sequence competence_seq;
 
-create sequence competenceProfile_seq;
+create sequence competence_profile_seq;
 
 create sequence person_seq;
 
-alter table availability add constraint fk_availability_person_id_1 foreign key (person_id) references person (person_id) on delete restrict on update restrict;
-create index ix_availability_person_id_1 on availability (person_id);
-alter table competenceProfile add constraint fk_competenceProfile_person_2 foreign key (person) references person (person_id) on delete restrict on update restrict;
-create index ix_competenceProfile_person_2 on competenceProfile (person);
-alter table competenceProfile add constraint fk_competenceProfile_competenc_3 foreign key (competence_competence_id) references competence (competence_id) on delete restrict on update restrict;
-create index ix_competenceProfile_competenc_3 on competenceProfile (competence_competence_id);
+alter table availability add constraint fk_availability_person_1 foreign key (person_id) references person (person_id) on delete restrict on update restrict;
+create index ix_availability_person_1 on availability (person_id);
+alter table competence_profile add constraint fk_competence_profile_person_2 foreign key (person) references person (person_id) on delete restrict on update restrict;
+create index ix_competence_profile_person_2 on competence_profile (person);
+alter table competence_profile add constraint fk_competence_profile_competen_3 foreign key (competence_competence_id) references competence (competence_id) on delete restrict on update restrict;
+create index ix_competence_profile_competen_3 on competence_profile (competence_competence_id);
 
 
 
@@ -64,7 +64,7 @@ drop table if exists availability;
 
 drop table if exists competence;
 
-drop table if exists competenceProfile;
+drop table if exists competence_profile;
 
 drop table if exists person;
 
@@ -74,7 +74,7 @@ drop sequence if exists availability_seq;
 
 drop sequence if exists competence_seq;
 
-drop sequence if exists competenceProfile_seq;
+drop sequence if exists competence_profile_seq;
 
 drop sequence if exists person_seq;
 
