@@ -3,7 +3,7 @@
 person:
 
     - !!models.User
-        person_id: 1
+        person_id: 3
         username: snigel
         surname: Snigelsson
         name: Bertil
@@ -12,7 +12,7 @@ person:
         email: bertil@example.com
 
     - !!models.User
-        person_id: 2
+        person_id: 4
         username: vanlig
         surname: Typ
         name: Vanlig
