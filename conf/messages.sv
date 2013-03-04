@@ -49,8 +49,8 @@ choose.username = välj användarnamn
 
 choose.password = välj lösenord
 plain.password = lösenord
-choose.confirmPassword = skriv in lösenorder igen
-plain.confirmPassword = lösenord
+choose.confirmPassword = skriv in lösenordet igen
+plain.confirmPassword = upprepa lösenord
 choose.email = välj epostadress
 plain.email = epostadress
 choose.name = välj ditt förnamn
@@ -68,3 +68,5 @@ constraints.required = Obligatorisk
 
 user.isHired = Du har blivit anställd!
 user.notHiredYet = Du har inte blivit anställd än
+
+password.length = lösenordet måste vara minst 6 tecken långt

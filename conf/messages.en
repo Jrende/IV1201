@@ -47,7 +47,7 @@ choose.username = enter a username
 choose.password = enter you password
 plain.password = password
 choose.confirmPassword = enter your password again
-plain.confirmPassword = password
+plain.confirmPassword = repeat password
 choose.email = enter your email adress
 plain.email = email adress
 choose.name = enter your first name
@@ -66,3 +66,5 @@ constraints.required = Required
 
 user.isHired = You''ve been hired!
 user.notHiredYet = You''ven''t been hired yet
+
+password.length = password must be 6 characters or more
