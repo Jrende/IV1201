@@ -62,8 +62,10 @@ plain.ssn = SSN
 choose.competence = choose a competence
 plain.competence = competence
 
-competence.1 = sausage grilling
-competence.2 = carousel driving
+competence.1 = Projekt Management
+competence.2 = Multimedia Design
+competence.3 = Sausage Grilling
+competence.4 = Merry-go-round driver
 
 constraints.required = Required
 
