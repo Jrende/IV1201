@@ -16,8 +16,15 @@ import play.mvc.Security;
 import views.html.applicantView;
 import views.html.error;
 
+/**
+ * Manage a database of CompetenceProfiles
+ */
 public class UserCompetenceController extends Controller {
 	
+	/**
+	 * Class representing CompetenceProfile as a Form
+	 *
+	 */
 	public static class CompetenceProfileForm {
 		public Competence competence;
 		public float yearsOfExperience;
@@ -29,14 +36,14 @@ public class UserCompetenceController extends Controller {
 		 */
 		public String validate() {
 			if(competence == null) {
-				return "Please select a competence!";
+				return Messages.get("error.specComp");
 			}	
 			return null;
 		}
 	}
 	
 	/**
-	 * Add a new Competence to a user
+	 * Add a new Competence to the current user
 	 * 
 	 * @return index-page of logged in user
 	 */

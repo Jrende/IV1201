@@ -22,8 +22,19 @@ import play.mvc.Content;
 import play.mvc.Security;
 
 
+/**
+ * Provides functionality for rendering an .pdf
+ *
+ */
 @Security.Authenticated(Secured.class)
 public class RenderPDF {
+	
+	/**
+	 * 
+	 * @param content the content to add to pdf
+	 * @param name name of pdf to render
+	 * @return File with specified content and name
+	 */
 	public static File renderPDFfile(Content content, String name) {
 		try {
 			File pdfFile = File.createTempFile(name, "pdf", new File(File.separator + "tmp"));

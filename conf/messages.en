@@ -18,6 +18,7 @@ error.notAuthorized = only recruiters can visit this page
 
 error.dateFormat = wrong format on specified date
 error.userNotFound = the selected user wasn''t found
+error.specComp = please specify competence
 
 userlist.users = Users
 

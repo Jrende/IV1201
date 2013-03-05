@@ -51,7 +51,7 @@ public class Availability extends Model{
     /**
      * Find Availability by id
      * 
-     * @param id
+     * @param id the id of the sought Availability
      * @return Availability
      */
 	public static Availability findById(Long id) {
