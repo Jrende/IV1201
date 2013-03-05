@@ -12,7 +12,7 @@ import util.RenderPDF;
 import views.html.*;
 
 /**
- * Manage the activities of a User that is an recruiter
+ * Manage the activities of a User that is a recruiter
  */
 @Security.Authenticated(Secured.class)
 public class RecruiterController extends Controller {
@@ -20,7 +20,7 @@ public class RecruiterController extends Controller {
 	/**
 	 * Show detailed view of user if allowed, otherwise error will be displayed
 	 * 
-	 * @param id
+	 * @param id the id of the User to display detailed view of. 
 	 * @return detailed view of choosen user
 	 */
 	public static Result getDetailedUserView(int id) {
@@ -41,7 +41,7 @@ public class RecruiterController extends Controller {
 	/**
 	 * Hire choosen user if allowed, otherwise display error
 	 * 
-	 * @param id
+	 * @param id the id of the User being hired
 	 * @return detailed view of hired
 	 */
 	public static Result hireApplicant(int id) {
@@ -62,7 +62,7 @@ public class RecruiterController extends Controller {
 	/**
 	 * Deny chosen user, if allowed, otherwise display error.
 	 * 
-	 * @param id
+	 * @param id the id of the user to deny. 
 	 * @return detailed view of chosen user
 	 */
 	public static Result denyApplicant(int id) {
@@ -83,8 +83,8 @@ public class RecruiterController extends Controller {
 	/**
 	 * Print pdf with applicant information, if allowed, otherwise display error. 
 	 * 
-	 * @param id
-	 * @return
+	 * @param id id of applicant to print pdf-version of
+	 * @return on success returns a view of the generated pdf
 	 */
 	public static Result printApplicantPDF(int id) {
 		String username = Http.Context.current().request().username();

@@ -79,7 +79,7 @@ public class UserCompetenceController extends Controller {
 	/**
 	 * Remove competence with specified id from logged in user.
 	 * 
-	 * @param id
+	 * @param id the id of the competence to remove
 	 * @return index view of logged in user
 	 */
 	@Security.Authenticated(Secured.class)
