@@ -68,7 +68,16 @@ public class UserAvailabilityController extends Controller {
      */
 	@Security.Authenticated(Secured.class)
     public static Result deleteAvailability(Long id) {
-        Availability.findById(id).delete();
+		String username = Http.Context.current().request().username();
+		User user = User.findByUsername(username);
+		Availability availability = Availability.findById(id);
+		if(availability == null) {
+			return badRequest(error.render(Messages.get("error.availabilityNotFound")));
+		}
+		if(!availability.person.person_id.equals(user.person_id)) {
+			return badRequest(error.render(Messages.get("error.availabilityNotYours")));
+		}
+		availability.delete();
         return redirect(routes.Index.index());
     }
 
