@@ -64,8 +64,11 @@ choose.ssn = välj ditt personnummer
 plain.ssn = personnummer
 choose.competence = välj en kompetens
 
-competence.1 = korvgrillning
-competence.2 = karusellåkning
+competence.1 = Projektledning
+competence.2 = Multimediedesign
+competence.3 = Korvgrillning
+competence.4 = Karuselldrift
+
 
 constraints.required = Obligatorisk
 
