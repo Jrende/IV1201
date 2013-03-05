@@ -14,7 +14,7 @@ import play.data.*;
 import views.html.error;
 
 /**
- * Manage a database of Availabilitys
+ * Manage a database of Availabilities
  */
 public class UserAvailabilityController extends Controller {
 	
@@ -40,6 +40,7 @@ public class UserAvailabilityController extends Controller {
 	}
 	
 	/**
+	 * Add new availability to logged in user. 
 	 * 
 	 * @return - Redirects to errorview on error, otherwise saves new Availability and redirects to index
 	 */
@@ -63,9 +64,12 @@ public class UserAvailabilityController extends Controller {
 		return redirect(routes.Index.index());
 	}
 	
-	  /**
-     * Handle availability deletion
-     */
+	 /**
+	  * Deletes a specified availaibility for the logged in user. 
+	  * 
+	  * @param id the id of the availability to delete
+	  * @return
+	  */
 	@Security.Authenticated(Secured.class)
     public static Result deleteAvailability(Long id) {
         Availability.findById(id).delete();

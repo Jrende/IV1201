@@ -17,7 +17,7 @@ import views.html.*;
 public class Index extends Controller {
 	
 	/**
-	 * Returns either admin view or user view, based on role of User.
+	 * Returns either applicantView or recruiterView, based on role of the logged in User.
 	 * 
 	 * @return - Rendered index page as response.
 	 */
