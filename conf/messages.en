@@ -11,7 +11,9 @@ title.competence = edit competences
 title.error = an error occured
 
 error.competenceProfileNotFound = competence profile not found
-error.competenceProfileNotYours = you can''t removed competence profiles not belonging to you
+error.competenceProfileNotYours = you can''t remove competence profiles not belonging to you
+error.availabilityNotFound = availability not found
+error.availabilityNotYours = you can''t remove availabilities not belonging to you
 error.notAuthorized = only recruiters can visit this page
 
 error.dateFormat = wrong format on specified date

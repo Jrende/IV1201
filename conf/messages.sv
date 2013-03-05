@@ -12,7 +12,10 @@ title.error = ett fel har inträffat
 
 error.competenceProfileNotFound = den valda kompetensprofilen hittades inte
 error.competenceProfileNotYours = du kan inte ta bort kompetensprofiler du inte äger
+error.availabilityNotFound = den valda tillgängligheten hittades inte
+error.availabilityNotYours = du kan inte ta bort andra användares tillgänglighet
 error.notAuthorized = endast rekryterare kan besöka denna sida
+
 error.userNotFound = den valda användaren hittades inte
 error.dateFormat = fel datumformat angivet
 
