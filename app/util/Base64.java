@@ -23,6 +23,10 @@ import java.util.ArrayList;
 15 	P 	31 	f, 	47 	v, 	63 	/	
 */
 
+/**
+ * Provides encoding and decoding-functionalities
+ *
+ */
 public class Base64 {
 
 	private final static int base64encodeMask = 0x3f;
@@ -39,6 +43,12 @@ public class Base64 {
 	public Base64() {
 	}
 
+	/**
+	 * Converts a 8-bit ascii message to to base64 encoded bytearray.  
+	 * 
+	 * @param data the byte-array to encode
+	 * @return encoded byte-array
+	 */
 	public static byte[] encode(byte[] data) {
 		ArrayList<Byte> base64encoded = new ArrayList<Byte>();
 		
@@ -79,7 +89,12 @@ public class Base64 {
 		return encoded;
 	}
 
-	
+	/**
+	 * Decodes an decoded char 
+	 * 
+	 * @param ch char to decode
+	 * @return decoded char
+	 */
 	private static char decodeBase64(char ch) {
 		int value;
 		for(int i = 0; i < base64decodeTable.length; i++ ) {
@@ -92,7 +107,12 @@ public class Base64 {
 		throw new RuntimeException("Bad Base64 value: " + ch);
 	}
 	
-	
+	/**
+	 * Decodes byte-array
+	 * 
+	 * @param data byte-array to decode
+	 * @return decoded byte-array
+	 */
 	public static byte[] decode(byte[] data) {
 		int i, ch, shift = 4, mask = base64decodeMask;
 		ArrayList<Byte> base64decoded = new ArrayList<Byte>();
@@ -130,20 +150,6 @@ public class Base64 {
 			decoded[i] = base64decoded.get(i);
 		
 		return decoded;
-	}
-	
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		String message = new String("1234567890!#¤%&/()=?");
-
-		byte[] encoded = Base64.encode(message.getBytes());
-		byte[] decoded = Base64.decode(encoded);
-		
-		System.out.println("encoded: " + new String(encoded));
-		System.out.println("decoded: " + new String(decoded));
-		System.out.println("message: " + message);
 	}
 
 }

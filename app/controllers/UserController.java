@@ -14,7 +14,7 @@ import views.html.*;
 public class UserController extends Controller {
 
 	/**
-	 * Authentication
+	 * Log in form
 	 */
 	public static class Login {
 		public String username;
@@ -34,6 +34,7 @@ public class UserController extends Controller {
 	}
 
 	/**
+	 * Render login-view
 	 * 
 	 * @return login-view
 	 */
@@ -76,7 +77,7 @@ public class UserController extends Controller {
 	}
 
 	/**
-	 * 
+	 * Get and validate register form. On successful registry, persist user and redirect to login-page. 
 	 * 
 	 * @return login-view on success, redirects back to register-view on error
 	 */

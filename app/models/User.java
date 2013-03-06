@@ -163,7 +163,7 @@ public class User extends Model {
 	 * available for registration, it is already in use with in the system.
 	 * 
 	 * @param username
-	 *            - user name to check.
+	 *            - username to check.
 	 * @return false if found, else true.
 	 */
 	static public boolean usernameAvailable(String username) {

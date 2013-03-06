@@ -15,6 +15,7 @@ error.competenceProfileNotYours = du kan inte ta bort kompetensprofiler du inte 
 error.availabilityNotFound = den valda tillgängligheten hittades inte
 error.availabilityNotYours = du kan inte ta bort andra användares tillgänglighet
 error.notAuthorized = endast rekryterare kan besöka denna sida
+error.specComp = välj en kompetens
 
 error.userNotFound = den valda användaren hittades inte
 error.dateFormat = fel datumformat angivet

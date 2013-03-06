@@ -56,7 +56,11 @@ public class CompetenceProfile extends Model {
 		return find.where().eq("competence_profile_id", id).findUnique();
 	}
 
-	
+	/**
+	 * Default validation of CompetenceProfile
+	 * 
+	 * @return
+	 */
 	public String validate() {
 		return null;
 	}
