@@ -1,0 +1,36 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:          www-recruiter
+# Required-Start:    $local_fs $remote_fs
+# Required-Stop:
+# X-Start-Before:    
+# Default-Start:     2 3 4 5
+# Default-Stop:
+# Short-Description: 
+# Description: 
+### END INIT INFO
+
+N=/etc/init.d/www-recruiter
+
+. /etc/www-recruiter/settings
+
+TPWD=$PWD
+
+set -e
+
+case "$1" in
+  start)
+	cd $INSTALL_PATH/site-data
+	screen -LdmS www-recruiter sudo -u www-data -g www-data env PATH=$INSTALL_PATH/playframework/play:$PATH play "start $SERVICE_PORT"
+	cd $TPWD
+	;;
+  stop|reload|restart|force-reload|status)
+	;;
+  *)
+	echo "Usage: $N {start|stop|restart|force-reload|status}" >&2
+	exit 1
+	;;
+esac
+
+exit 0
