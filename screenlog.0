@@ -1,0 +1,10 @@
+[0m[[0minfo[0m] [0mLoading project definition from /home/mao/workspace.iv1201/IV1201/project[0m
+[0m[[0minfo[0m] [0mSet current project to IV1201 (in build file:/home/mao/workspace.iv1201/IV1201/)[0m
+
+[35m--- (Running the application from SBT, auto-reloading is enabled) ---[0m
+
+[[37minfo[0m] play - Listening for HTTP on port 9000...
+
+[32m(Server started, use Ctrl+D to stop and go back to the console...)[0m
+
+
