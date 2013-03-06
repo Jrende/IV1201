@@ -19,6 +19,7 @@ error.specComp = välj en kompetens
 
 error.userNotFound = den valda användaren hittades inte
 error.dateFormat = fel datumformat angivet
+error.notfound = sidan hittades inte
 
 userlist.users = Användare
 
