@@ -20,7 +20,7 @@ error.dateFormat = wrong format on specified date
 error.userNotFound = the selected user wasn''t found
 error.specComp = please specify competence
 
-error.notfound = Page not found
+error.notfound = page not found
 
 userlist.users = Users
 
