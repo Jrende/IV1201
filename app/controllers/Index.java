@@ -34,8 +34,8 @@ public class Index extends Controller {
 		}
 	}
 
-	public static Result pageNotFound() {
-		return badRequest(error.render(Messages.get("error.notfound")));
+	public static Result pageNotFound(String wrong) {
+		return badRequest(notfound.render(wrong + ": " + Messages.get("error.notfound")));
 	}
 }
 
