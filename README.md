@@ -1,4 +1,12 @@
-IV1201
+Webbapplikation att registrera CV:n
 ======
 
-Bra mycket bättre än IV1202.
+En webbapplikation för att registrera CV:n, skriven för kursen IV1201 på KTH i Kista. 
+
+
+
+
+Requirements
+-------
+Java
+Play Framework 2.1
